@@ -20,6 +20,6 @@ This ACF field type is compatible with:
 
 ### Changelog
 
-## 1.0.0
+## 0.1.0
 * Initial Release.
 * Clean Files & Codes.

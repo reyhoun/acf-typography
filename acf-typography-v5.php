@@ -100,8 +100,9 @@ class acf_field_typography extends acf_field {
         if( empty($field['value']) ){
 
             $field['value'][''] = '';
+            $field['value']['font-family']	 = 	'';
             $field['value']['font-weight']	 = 	'';
-            $field['value']["backup_font"]	 = 	'Tahoma,Geneva, sans-serif';
+            $field['value']['backup_font']	 = 	'Tahoma,Geneva, sans-serif';
             $field['value']['text_align']	 =	'left';
             $field['value']['font_size']	 =	'20';
             $field['value']['line_height']	 =	'25';

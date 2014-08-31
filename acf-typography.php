@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields: Typography
 Plugin URI: https://github.com/reyhoun/acf-typography
 Description: Typography with Google Fonts Field for Advanced Custom Fields
-Version: 1.0.0
+Version: 0.1.0
 Author: Reyhoun
 Author URI: http://reyhoun.com/
 License: GPLv2 or later
@@ -21,12 +21,5 @@ function include_field_types_typography( $version ) {
 	include_once('acf-typography-v5.php');	
 }
 
-add_action('acf/include_field_types', 'include_field_types_typography');	
-
-// 3. Include field type for ACF4
-function register_fields_typography() {
-	include_once('acf-typography-v4.php');
-}
-
-add_action('acf/register_fields', 'register_fields_typography');
+add_action('acf/include_field_types', 'include_field_types_typography');
 ?>
