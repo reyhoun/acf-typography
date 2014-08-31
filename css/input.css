@@ -1,0 +1,49 @@
+.select2-container {
+	width: 40%;
+	margin-left: 45px;
+	margin-right: 11px;
+
+}
+
+body {
+    margin: 0;
+    background-color: #eee;
+}
+
+.container {
+    width: 720px;
+    margin: 20px auto;
+}
+
+.configure {
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #fff;
+}
+.configure div {
+    margin: 10px 0;
+}
+.configure label {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.configure input {
+    width: 640px;
+    padding: 3px;
+    font-size: 13px;
+}
+.configure textarea {
+    display: block;
+    width: 640px;
+    min-height: 120px;
+    resize: vertical;
+    padding: 3px;
+    font-size: 13px;
+}
+#preview_font {
+	font-size: 20px;
+	text-align: center;
+	padding: 20px;
+}
