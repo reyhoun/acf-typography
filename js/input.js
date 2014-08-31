@@ -241,8 +241,11 @@
 
        		 function preview(name , stl) {
         	
-        		var css = 	'@import url(http://fonts.googleapis.com/css?family=' + name.split(' ').join('+') + ':' + stl + '); #preview_font { font-family: ' + name + '; }';
-        		$('#preview_style').html(css);
+       		 	if ($('#preview_style').length) {
+        	
+        			var css = 	'@import url(http://fonts.googleapis.com/css?family=' + name.split(' ').join('+') + ':' + stl + '); #preview_font { font-family: ' + name + '; }';
+        			$('#preview_style').html(css);
+        		}
 
         	}
 
