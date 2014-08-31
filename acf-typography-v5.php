@@ -1,28 +1,5 @@
 <?php
-
 class acf_field_typography extends acf_field {
-	
-
-		// public $defaults_fonts = array(
-  //           "Arial, Helvetica, sans-serif"                          => "Arial, Helvetica, sans-serif",
-  //           "'Arial Black', Gadget, sans-serif"                     => "'Arial Black', Gadget, sans-serif",
-  //           "'Bookman Old Style', serif"                            => "'Bookman Old Style', serif",
-  //           "'Comic Sans MS', cursive"                              => "'Comic Sans MS', cursive",
-  //           "Courier, monospace"                                    => "Courier, monospace",
-  //           "Garamond, serif"                                       => "Garamond, serif",
-  //           "Georgia, serif"                                        => "Georgia, serif",
-  //           "Impact, Charcoal, sans-serif"                          => "Impact, Charcoal, sans-serif",
-  //           "'Lucida Console', Monaco, monospace"                   => "'Lucida Console', Monaco, monospace",
-  //           "'Lucida Sans Unicode', 'Lucida Grande', sans-serif"    => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
-  //           "'MS Sans Serif', Geneva, sans-serif"                   => "'MS Sans Serif', Geneva, sans-serif",
-  //           "'MS Serif', 'New York', sans-serif"                    => "'MS Serif', 'New York', sans-serif",
-  //           "'Palatino Linotype', 'Book Antiqua', Palatino, serif"  => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
-  //           "Tahoma,Geneva, sans-serif"                             => "Tahoma, Geneva, sans-serif",
-  //           "'Times New Roman', Times,serif"                        => "'Times New Roman', Times, serif",
-  //           "'Trebuchet MS', Helvetica, sans-serif"                 => "'Trebuchet MS', Helvetica, sans-serif",
-  //           "Verdana, Geneva, sans-serif"                           => "Verdana, Geneva, sans-serif",
-  //       );
-		
 	
 	/*
 	*  __construct
@@ -102,8 +79,7 @@ class acf_field_typography extends acf_field {
 	*/
 	
 	function render_field_settings( $field ) {
-		
-		
+
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Font Size','acf-typography'),
 			'instructions'	=> __('Customise the input font size','acf-typography'),
@@ -112,23 +88,10 @@ class acf_field_typography extends acf_field {
 			'prepend'		=> 'px',
 		));
 
-		
-	//======================================================================================
-
-
 	}
 
 
-	//======================================================================================
-
-
-
-	
-
 	function render_field( $field ) {
-
-
-
 		// convert value to array
         $field['value'] = acf_force_type_array($field['value']);
 
@@ -143,58 +106,18 @@ class acf_field_typography extends acf_field {
             $field['value']['font_size']	 =	'20';
             $field['value']['line_height']	 =	'25';
             $field['value']['direction']	 =	'ltr';
-
-
         }
 
         $field_value = $field['value'];
-
-
-
-        
-
-        	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-
-		// echo '<pre>';
-		// 	print_r($field['value']);
-
-		// 	// echo $value['font-family'];
-		// echo '</pre>';
-		
-
-
-
-
-
 
 		
 		/*
 		*  Create a simple text input using the 'font_size' setting.
 		*/
-
-
 		$json = file_get_contents('http://localhost/wordpress/wp-content/plugins/acf-typography/gf.json');
 		$fontArray = json_decode( $json);
 
-
 		echo "<style id='preview_style' ></style>";
-
-
-
-  //   	echo "================================================================";
-  //   	echo '<pre>';
-  //   	 echo '<br>';
-		// 	print_r($fontArray);
-		// echo '</pre>';
-
-
-
-
 
 		$style = array( 'NORMAL 400', 'SMALL 200', 'BOLD 800');
 		$text_align =  array('inherit', 'left', 'right', 'center', 'justify', 'inital');
@@ -202,7 +125,6 @@ class acf_field_typography extends acf_field {
 								 'rtl' => 'right to left');
 		$s = 0;
 		$e = '';
-
 
 		$defaults_fonts = array(
             "Arial, Helvetica, sans-serif"                          => "Arial, Helvetica, sans-serif",
@@ -292,23 +214,7 @@ class acf_field_typography extends acf_field {
 	       		<label>Preview Text:</label>
         			<div id="preview_font">Reyhoun is Awesome :) <br /> 1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
   				</div>';
-
-
-			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-
-
-
-
-
-
-
 	}
-
-	//======================================================================================
-
-
-	
 		
 	/*
 	*  input_admin_enqueue_scripts()
@@ -329,27 +235,20 @@ class acf_field_typography extends acf_field {
 		
 		$dir = plugin_dir_url( __FILE__ );
 
-
 		// register & include JS
 		wp_register_script( 'acf-input-typography', "{$dir}js/input.js" );
 		wp_enqueue_script('acf-input-typography');
-		
 		
 		
 		// register & include CSS  
 		wp_register_style( 'acf-input-typography', "{$dir}css/input.css" ); 
 		wp_enqueue_style('acf-input-typography');
 		
-		
-		
 	}
-	
-	
 	
 }
 
 
 // create field
 new acf_field_typography();
-
 ?>
