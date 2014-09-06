@@ -32,8 +32,8 @@ class acf_field_typography extends acf_field {
 	//=========================== get json for seting ===========================
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-		$json = file_get_contents('../wp-content/plugins/acf-typography/gf.json');
+		$dir = plugin_dir_url( __FILE__ );
+		$json = file_get_contents("{$dir}gf.json");
 		$fontArray = json_decode( $json);
 		
 		$font_familys = array();
