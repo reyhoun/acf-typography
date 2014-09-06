@@ -1,18 +1,6 @@
 <?php
 class acf_field_typography extends acf_field {
 	
-	/*
-	*  __construct
-	*
-	*  This function will setup the field type data
-	*
-	*  @type	function
-	*  @date	5/03/2014
-	*  @since	5.0.0
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
 	
 	//=========================================================================================
 	//=================== This function will setup the field type data ========================
@@ -45,7 +33,7 @@ class acf_field_typography extends acf_field {
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
-		$json = file_get_contents('http://localhost/wordpress/wp-content/plugins/acf-typography/gf.json');
+		$json = file_get_contents('../wp-content/plugins/acf-typography/gf.json');
 		$fontArray = json_decode( $json);
 		
 		$font_familys = array();

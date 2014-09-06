@@ -42,7 +42,7 @@
 			var font_family_index = 0;
 			var name_font;
 			var arr = $.ajax({
-			  url: 'http://localhost/wordpress/wp-content/plugins/acf-typography/gf.json',
+			  url: '../wp-content/plugins/acf-typography/gf.json',
 			  dataType: 'json',
 			  async: false,
 			});
