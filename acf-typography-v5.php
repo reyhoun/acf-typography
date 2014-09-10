@@ -8,30 +8,49 @@ class acf_field_typography extends acf_field {
 
 
 	function __construct() {
-		
-		/*
-		*  name (string) Single word, no spaces. Underscores allowed
-		*/
+
+		$YOUR_API_KEY = null ;
 		
 		$this->name = 'typography';
 		$this->label = __('Typography', 'acf-typography');
+		$this->category = 'Choice';
 		
 		
-		/*
-		*  category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
-		*/
-		
-		$this->category = 'basic';
-		
-		
-		/*
-		*  defaults (array) Array of default settings which are merged into the field object. These are used later in settings
-		*/
+
 
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	//=========================== get json for seting ===========================
+	//======================== get json for extra seting ========================
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+		// update json
+		function json_update() {
+
+			$filename = '../wp-content/plugins/acf-typography/gf.json';
+
+			$lastdate = date ("Ymd", filemtime($filename));
+			$now = date ("Ymd", time());
+			$time = $now - $lastdate;
+
+			if ($time == 3) {
+
+				$json = file_get_contents('https://www.googleapis.com/webfonts/v1/webfonts?key=' . $YOUR_API_KEY);
+
+				$files = "../wp-content/plugins/acf-typography/gf.json";  
+				$myfile = fopen($files, 'wb');
+				fwrite($myfile, $json);
+				fclose($myfile);
+
+			}
+		}
+
+
+		// if $YOUR_API_KEY exist;
+		if ($YOUR_API_KEY) {
+			json_update();
+		}
+
+
+		//load json file for extra seting
 		$dir = plugin_dir_url( __FILE__ );
 		$json = file_get_contents("{$dir}gf.json");
 		$fontArray = json_decode( $json);
