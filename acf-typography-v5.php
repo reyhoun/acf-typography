@@ -349,7 +349,7 @@ class acf_field_typography extends acf_field {
 
         $field_value = $field['value'];
 
-		echo "<style id='preview_style' ></style>";
+		echo "<style id='". $field['key'] . "preview_style' ></style>";
 
 		$style = array( 'NORMAL 400', 'SMALL 200', 'BOLD 800');
 		$text_align =  array('inherit', 'left', 'right', 'center', 'justify', 'inital');
@@ -363,10 +363,36 @@ class acf_field_typography extends acf_field {
 
 
 
+
+
+
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//============================== CSS style ==================================
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+		echo '
+		<style>
+			.field_type-typography .select2-container {
+				width: 40%;
+				margin-left: 45px;
+				margin-right: 11px;
+
+			}
+			#' . $field['key'] . 'preview_font {
+				font-size: 20px;
+				text-align: center;
+				padding: 20px;
+			}			
+		</style>
+		';
+
+
+
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	//========================== show render field ==============================
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+		// echo $field['key'];
 
 		echo "<div>";
 
@@ -379,14 +405,15 @@ class acf_field_typography extends acf_field {
 
 				// Font Family selector
 				if ($field['font_familys_?']) {
-					echo '<input name="' . $field['name'] . '[font-family]" id="attribute" class = "select2-container" value="' . $field_value['font-family'] . '" />';
+
+					echo '<input name="' . $field['name'] . '[font-family]" id="' . $field['key'] . 'attribute" class = "select2-container" value="' . $field_value['font-family'] . '" />';
 				}
 				
 
 
 				// Font Weight & Style selector
 				if ($field['stylefont_?'] & $field['font_familys_?']) {
-				 	echo '<input name="' . $field['name'] . '[font-weight]" id="value" value="' . $field_value['font-weight'] . '" class = "select2-container" type="hidden" style="width:300px"/>';
+				 	echo '<input name="' . $field['name'] . '[font-weight]" id="' . $field['key'] . '" value="' . $field_value['font-weight'] . '" class = "select2-container" type="hidden" style="width:300px"/>';
 				 }
 
 			echo "</div>";
@@ -402,7 +429,7 @@ class acf_field_typography extends acf_field {
 
 				//Backup Font Family
 				if ($field['backupfont_?']) {
-					echo '<select name="' . $field['name'] . '[backupfont]" class = "js-select2">';
+					echo '<select name="' . $field['name'] . '[backupfont]" class = "'. $field['key'] .'js-select2">';
 						foreach ( $defaults_fonts as $k => $v ) {
 							echo '<option value="' . $k . '"' . selected($field_value['backupfont'], $k, false) . ' >' . $k . '</option>' ;
 						}
@@ -412,7 +439,7 @@ class acf_field_typography extends acf_field {
 
 				// "Text Align";
 				if ($field['text_align_?']) {
-					echo '<select name="' . $field['name'] . '[text_align]" id="align" class = "js-select2">';
+					echo '<select name="' . $field['name'] . '[text_align]" id="' . $field['key'] . 'align" class = "'. $field['key'] .'js-select2">';
 						foreach ( $text_align as $k ) {
 							echo '<option value="' . $k . '"' . selected($field_value['text_align'], $k, false) . ' >' . $k . '</option>' ;
 						}
@@ -433,7 +460,7 @@ class acf_field_typography extends acf_field {
 
 			// "Text direction";
 				if ($field['text_direction_?']) {
-					echo '<select name="' . $field['name'] . '[direction]" class = "js-select2">';
+					echo '<select name="' . $field['name'] . '[direction]" class = "'. $field['key'] .'js-select2">';
 						foreach ( $text_direction as $k => $v) {
 							echo '<option value="' . $k . '"' . selected($field_value['direction'], $k, false) . ' >' . $v . '</option>' ;
 						}
@@ -446,11 +473,11 @@ class acf_field_typography extends acf_field {
 
 			//echo 'Font Size';
 				if ($field['font_size_?']) {
-					echo '<input type="number"  min="1"  name="' . $field['name'] . '[font_size]" type="text" id="size" value="' . $field_value['font_size'] . '" >';
+					echo '<input type="number"  min="1"  name="' . $field['name'] . '[font_size]" type="text" id="' . $field['key'] . 'size" value="' . $field_value['font_size'] . '" >';
 				}
 				if ($field['line_height_?']) {
 					//echo 'Line Height';
-					echo '<input type="number"  min="1"  name="' . $field['name'] . '[line_height]" type="text" id="line" class = ""  value="' . $field_value['line_height'] . '" >' ;
+					echo '<input type="number"  min="1"  name="' . $field['name'] . '[line_height]" type="text" id="' . $field['key'] . 'line" class = ""  value="' . $field_value['line_height'] . '" >' ;
 				}
 
 
@@ -463,9 +490,259 @@ class acf_field_typography extends acf_field {
 		if ($field['preview_text_?'] & $field['font_familys_?']) {
 			echo '  
 	    	   		<label>Preview Text:</label>
-        				<div id="preview_font">Reyhoun is Awesome :) <br /> 1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
-  					</div>';
+        				<div id="' . $field['key'] . 'preview_font">Reyhoun is Awesome :) <br /> 1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+  				 ';
   		}
+
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+	//============================= javascript ==================================
+	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  		echo "
+			<script>
+				(function($){
+
+
+			$('.". $field['key'] ."js-select2').select2();
+
+
+		
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//============ Run preview in first time ==================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			preview($('#" . $field['key'] . "attribute').val(),$('#" . $field['key'] . "').val());
+
+			$('#". $field['key'] . "preview_font').css('font-size', $('#" . $field['key'] . "size').val() + 'px');
+
+			$('#". $field['key'] . "preview_font').css('line-height', $('#" . $field['key'] . "line').val()+ 'px');
+
+			$('#". $field['key'] . "preview_font').css('text-align', $('#" . $field['key'] . "align').val());
+
+
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//=============== Initializing variables ==================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			var font_family_index = 0;
+			var name_font;
+			var arr = $.ajax({
+			  url: '../wp-content/plugins/acf-typography/gf.json',
+			  dataType: 'json',
+			  async: false,
+			});
+
+			var data_array = arr.responseJSON;
+
+			var i_item = 0 ; 
+
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//========= Font Family list by attribute ===============
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+   			$('#" . $field['key'] . "attribute').select2( {
+
+    			   query: function (query) {
+
+    			       var data = {results: []}, i;
+
+
+					  		 for (i in  data_array['items']) {
+					  		 	
+					  		 	var Big1 = data_array['items'][i]['family'].toLowerCase();
+					  		 	var Big2 = query.term.toLowerCase();
+
+					  		 	if(Big1.indexOf(Big2) > -1){
+
+    			          			 data.results.push({id: data_array['items'][i]['family'], text: data_array['items'][i]['family'], data: i});
+    			          		};
+    			       		}
+
+
+
+    			       // for (i in  data_array['items']) {
+
+    			       //     data.results.push({id: data_array['items'][i]['family'], text: data_array['items'][i]['family'], data: i});
+
+    			       // }
+    			       query.callback(data);
+    			   },
+
+    			   initSelection : function (element, callback) {
+
+    			   		var elementText = $(element).val();
+
+    			        var data = {id: elementText, text: elementText};
+    			        callback(data);
+    			    }
+
+   			});
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//=============== First loade Font Weight =================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+   			$('#" . $field['key'] . "attribute').ready( function(e) {
+
+       			$('#" . $field['key'] . "').select2({
+
+        			   query: function (query) {
+
+
+        			   			for (i in  data_array['items']) {
+					
+        			    		   if (data_array['items'][i]['family'] == $('#" . $field['key'] . "attribute').val()) {
+			
+        			    		   		var data = {results: []}, i;
+			
+        			       				for (e in  data_array['items'][i]['variants']) {
+					
+        			       		 		  	 data.results.push({id: data_array['items'][i]['variants'][e] , text: data_array['items'][i]['variants'][e]});
+        			       				}
+        			       				// console.log(i);
+        			       				font_family_index = i;
+        			    		   };
+        			   			}
+			
+        			       query.callback(data);
+
+        			   },
+
+        			   // results: function (data, page) {
+        				    //Used to determine whether or not there are more results available,
+        				    //and if requests for more data should be sent in the infinite scrolling
+        				    
+        				    // return { results: data.Results, more: more };
+        				// }
+
+
+        			   initSelection : function (element, callback) {
+
+        			    	var elementText = $(element).val();
+        			    	var data = {id: elementText, text: elementText};
+        			    	callback(data);
+        				}
+       			});
+   			});
+
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//=========== Loade Font Weight by attribute ==============
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+   			// var font_family_index = 0;
+   			$('#" . $field['key'] . "attribute').on('change', function(e) {
+
+   					preview(data_array['items'][e.added['data']]['family'],data_array['items'][e.added['data']]['variants'][0]);
+   			
+   					font_family_index = e.added['data'];
+
+    			   $('#" . $field['key'] . "').select2({
+
+     			      query: function (query) {
+
+     			          var data = {results: []}, i;
+	
+     			          		for (i in  data_array['items'][e.added['data']]['variants']) {
+
+     			          		    data.results.push({id: data_array['items'][e.added['data']]['variants'][i] , text: data_array['items'][e.added['data']]['variants'][i]});
+
+     			          		}
+
+     			          query.callback(data);
+     			          // name_font = data_array['items'][e.added['data']]['variants'][i];
+		
+     			      },
+
+     			      initSelection : function (element, callback) {
+
+
+      			      var data = {id: data_array['items'][e.added['data']]['variants'][0] , text: data_array['items'][e.added['data']]['variants'][0]};
+      			      $('#" . $field['key'] . "').val(data_array['items'][e.added['data']]['variants'][0]); 
+      			      callback(data);
+      			      // preview($('#" . $field['key'] . "attribute').val());
+		
+      				  }
+
+      			 });
+
+   			});
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//================= Font style change =====================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			$('#" . $field['key'] . "').on('change',function(e){
+
+				preview(data_array['items'][font_family_index]['family'],e.added['id']);
+
+			});
+
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//================== Font size change =====================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			$('#" . $field['key'] . "size').on('input',function(){
+
+				$('#". $field['key'] . "preview_font').css('font-size', $(this).val() + 'px');
+
+			});
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//================== Font line change =====================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			$('#" . $field['key'] . "line').on('input',function(){
+
+				$('#". $field['key'] . "preview_font').css('line-height', $(this).val()+ 'px');
+
+			});
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//================= Font align change =====================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			$('#" . $field['key'] . "align').on('change',function(){
+
+				$('#". $field['key'] . "preview_font').css('text-align', $(this).val());
+
+			});
+
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//================== Preview function =====================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+       		 function preview(name , stl) {
+        	
+       		 	if ($('#". $field['key'] . "preview_style').length) {
+        	
+        			var css = 	'@import url(http://fonts.googleapis.com/css?family=' + name.split(' ').join('+') + ':' + stl + '); #". $field['key'] . "preview_font { font-family: ' + name + '; }';
+        			$('#". $field['key'] . "preview_style').html(css);
+        		}
+
+        	}
+
+
+
+
+				})(jQuery);
+			</script> ";
+
+
+
+
 	}
 		
 
@@ -483,14 +760,14 @@ class acf_field_typography extends acf_field {
 		
 		$dir = plugin_dir_url( __FILE__ );
 
-		// register & include JS
-		wp_register_script( 'acf-input-typography', "{$dir}js/input.js" );
-		wp_enqueue_script('acf-input-typography');
+		// // register & include JS
+		// wp_register_script( 'acf-input-typography', "{$dir}js/input.js" );
+		// wp_enqueue_script('acf-input-typography');
 		
 		
-		// register & include CSS  
-		wp_register_style( 'acf-input-typography', "{$dir}css/input.css" ); 
-		wp_enqueue_style('acf-input-typography');
+		// // register & include CSS  
+		// wp_register_style( 'acf-input-typography', "{$dir}css/input.css" ); 
+		// wp_enqueue_style('acf-input-typography');
 		
 	}
 	
