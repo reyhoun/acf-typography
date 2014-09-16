@@ -85,12 +85,13 @@ class acf_field_typography extends acf_field {
 
 		$this->defaults = array(
 			'font_familys_?'	=> 1,
-			'stylefont_?'		=> 1,
+			'font_weight_?'		=> 1,
 			'backupfont_?'		=> 1,
 			'text_align_?'		=> 1,
 			'text_direction_?'	=> 1,
 			'font_size_?'		=> 1,
 			'line_height_?'		=> 1,
+			'font_style_?'		=> 1,
 			'preview_text_?'	=> 1,
 			'font-family'		=> '',
 			'font-weight'		=> '',
@@ -99,6 +100,7 @@ class acf_field_typography extends acf_field {
             'direction'			=> '',
 			'font_size'			=> 20,
 			'line_height'		=> 25,
+			'font_style'		=> '',
 			'default_value'		=> '',//pak
 			'new_lines'			=> '',
 			'maxlength'			=> '',
@@ -115,7 +117,6 @@ class acf_field_typography extends acf_field {
 						'800'		=> '800'
 					),
 			'backupfont'		=> array(
-            			"Arial, Helvetica, sans-serif"                          => "Arial, Helvetica, sans-serif",
             			"'Arial Black', Gadget, sans-serif"                     => "'Arial Black', Gadget, sans-serif",
             			"'Bookman Old Style', serif"                            => "'Bookman Old Style', serif",
             			"'Comic Sans MS', cursive"                              => "'Comic Sans MS', cursive",
@@ -132,6 +133,7 @@ class acf_field_typography extends acf_field {
             			"'Times New Roman', Times,serif"                        => "'Times New Roman', Times, serif",
             			"'Trebuchet MS', Helvetica, sans-serif"                 => "'Trebuchet MS', Helvetica, sans-serif",
             			"Verdana, Geneva, sans-serif"                           => "Verdana, Geneva, sans-serif",
+            			"Arial, Helvetica, sans-serif"                          => "Arial, Helvetica, sans-serif",
         			)
 		);
 
@@ -186,10 +188,10 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Style Font ?','acf-typography'),
+			'label'			=> __('Font Weight ?','acf-typography'),
 			'type'			=> 'radio',
 			'layout'		=>  'horizontal',
-			'name'			=> 'stylefont_?',
+			'name'			=> 'font_weight_?',
 			'choices'		=>	array(
 								1	=>	__('Yes','acf-font-awesome'),
 								0	=>	__('No','acf-font-awesome')
@@ -197,7 +199,7 @@ class acf_field_typography extends acf_field {
 		));
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Style Font','acf-typography'),
+			'label'			=> __('Font Weight','acf-typography'),
 			'type'			=> 'select',
 			'name'			=> 'font-weight',
 			'choices'		=>	$field['stylefont']
@@ -290,7 +292,8 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Line Height ?','acf-typography'),
+			'label'			=> __('Line Height ?','acf-typography'), 
+			'instructions'	=> __('When line height don t load line height is 150%','acf-typography'),
 			'type'			=> 'radio',
 			'layout'  		=>  'horizontal',
 			'name'			=> 'line_height_?',
@@ -306,6 +309,31 @@ class acf_field_typography extends acf_field {
 			'name'			=> 'line_height',
 			'prepend'		=> 'px',
 		));
+
+
+
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Font Style ?','acf-typography'),
+			'type'			=> 'radio',
+			'layout'  		=>  'horizontal',
+			'name'			=> 'font_style_?',
+			'choices'		=>	array(
+									1	=>	__('Yes','acf-font-awesome'),
+									0	=>	__('No','acf-font-awesome')
+								)
+		));
+
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Font Style','acf-typography'),
+			'type'			=> 'select',
+			'name'			=> 'font_style',
+			'choices'		=>	array(
+			 		'normal'	=> 'normal',
+			 		'italic'	=> 'italic',
+			 	)
+		));
+
+
 
 
 		acf_render_field_setting( $field, array(
@@ -343,8 +371,16 @@ class acf_field_typography extends acf_field {
             $field['value']['backupfont']	 = 	$field['backup-font'];
             $field['value']['text_align']	 =	$field['text_align'];
             $field['value']['font_size']	 =	$field['font_size'];
-            $field['value']['line_height']	 =	$field['line_height'];
+           
+            if ($field['line_height_?']) {
+            	$field['value']['line_height']	 =  $field['line_height'];
+            } else {
+            	$field['value']['line_height']	 =	'150%';
+            }
+            
             $field['value']['direction']	 =	$field['direction'];
+            $field['value']['font_style']	 =	$field['font_style'];
+
         }
 
         $field_value = $field['value'];
@@ -355,6 +391,10 @@ class acf_field_typography extends acf_field {
 		$text_align =  array('inherit', 'left', 'right', 'center', 'justify', 'inital');
 		$text_direction = array( 'ltr' => 'left to right',
 								 'rtl' => 'right to left');
+
+		$font_style = array(
+			 		'normal'	=> 'normal',
+			 		'italic'	=> 'italic');
 		$s = 0;
 		$e = '';
 
@@ -399,7 +439,7 @@ class acf_field_typography extends acf_field {
 			if ($field['font_familys_?']) 
 				echo '<div class = "select2-container"> Font Family</div> ';
 
-			if ($field['stylefont_?'] & $field['font_familys_?'])
+			if ($field['font_weight_?'] & $field['font_familys_?'])
 				echo  '<div class = "select2-container"> Font Weight & Style </div>';
 			echo "<div>";
 
@@ -412,7 +452,7 @@ class acf_field_typography extends acf_field {
 
 
 				// Font Weight & Style selector
-				if ($field['stylefont_?'] & $field['font_familys_?']) {
+				if ($field['font_weight_?'] & $field['font_familys_?']) {
 				 	echo '<input name="' . $field['name'] . '[font-weight]" id="' . $field['key'] . '" value="' . $field_value['font-weight'] . '" class = "select2-container" type="hidden" style="width:300px"/>';
 				 }
 
@@ -454,8 +494,14 @@ class acf_field_typography extends acf_field {
 			if ($field['text_direction_?'])
 				echo "<div class = 'select2-container'>direction </div>";
 
-			if ($field['font_size_?'] & $field['line_height_?'])
-				echo "<div class = 'select2-container'> Font Size - Line Height </div>";
+				echo "<div class = 'select2-container'> ";
+
+				if ($field['font_size_?'])
+						echo "<div>Font Size</div>";
+				if ($field['line_height_?'])	
+						echo "<div> Line Height</div>";
+
+					 echo "</div>";
 			
 
 			// "Text direction";
@@ -471,7 +517,6 @@ class acf_field_typography extends acf_field {
 
 			echo "<div class = 'select2-container'>";
 
-			//echo 'Font Size';
 				if ($field['font_size_?']) {
 					echo '<input type="number"  min="1"  name="' . $field['name'] . '[font_size]" type="text" id="' . $field['key'] . 'size" value="' . $field_value['font_size'] . '" >';
 				}
@@ -483,6 +528,19 @@ class acf_field_typography extends acf_field {
 
 			echo "</div>";
 
+
+			if ($field['font_style_?'])
+				echo '<div class = "select2-container"> Font Style </div>';
+			echo "<div>";
+			// "Font Style";
+					if ($field['font_style_?']) {
+						echo '<select name="' . $field['name'] . '[font_style]" class = "'. $field['key'] .'js-select2">';
+							foreach ( $font_style as $k => $v) {
+								echo '<option value="' . $k . '"' . selected($field_value['font_style'], $k, false) . ' >' . $v . '</option>' ;
+							}
+						echo '</select>';
+					}
+			echo "</div>";
 
 		echo "</div>";
 
@@ -602,7 +660,13 @@ class acf_field_typography extends acf_field {
 			
         			       				for (e in  data_array['items'][i]['variants']) {
 					
-        			       		 		  	 data.results.push({id: data_array['items'][i]['variants'][e] , text: data_array['items'][i]['variants'][e]});
+        			       		 		  	 if (data_array['items'][i]['variants'][e] == 'regular') {
+
+        			       						data.results.push({id: '400' , text: '400'});
+        			       					} 
+        			       					else{
+        			       						data.results.push({id: data_array['items'][i]['variants'][e] , text: data_array['items'][i]['variants'][e]});
+        			       					};
         			       				}
         			       				// console.log(i);
         			       				font_family_index = i;
@@ -651,7 +715,13 @@ class acf_field_typography extends acf_field {
 	
      			          		for (i in  data_array['items'][e.added['data']]['variants']) {
 
-     			          		    data.results.push({id: data_array['items'][e.added['data']]['variants'][i] , text: data_array['items'][e.added['data']]['variants'][i]});
+     			          		    if (data_array['items'][e.added['data']]['variants'][i] == 'regular') {
+
+        			       						data.results.push({id: '400' , text: '400'});
+        			       					} 
+        			       					else{
+        			       						data.results.push({id: data_array['items'][e.added['data']]['variants'][i] , text: data_array['items'][e.added['data']]['variants'][i]});
+        			       					};
 
      			          		}
 
