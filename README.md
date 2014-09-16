@@ -21,8 +21,8 @@ This ACF field type is compatible with:
 ### Changelog
 
 ## 0.1.2
+* bug fix : When Load more than one typography field in a page
 * bug fix : Font Size label show display
 * bug fix : 400 to place regular in Font Weight
 * bug fix : Change font style label
 * bug fix : Add font style field
-* bug fix : When Load more than one typography field in a page

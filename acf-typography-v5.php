@@ -84,15 +84,15 @@ class acf_field_typography extends acf_field {
 
 
 		$this->defaults = array(
-			'font_familys_?'	=> 1,
-			'font_weight_?'		=> 1,
-			'backupfont_?'		=> 1,
-			'text_align_?'		=> 1,
-			'text_direction_?'	=> 1,
-			'font_size_?'		=> 1,
-			'line_height_?'		=> 1,
-			'font_style_?'		=> 1,
-			'preview_text_?'	=> 1,
+			'show_font_familys'		=> 1,
+			'show_font_weight'		=> 1,
+			'show_backup_font'		=> 1,
+			'show_text_align'		=> 1,
+			'show_text_direction'	=> 1,
+			'show_font_size'		=> 1,
+			'show_line_height'		=> 1,
+			'show_font_style'		=> 1,
+			'show_preview_text'		=> 1,
 			'font-family'		=> '',
 			'font-weight'		=> '',
             'backup-font'		=> 'Tahoma,Geneva, sans-serif',
@@ -167,10 +167,11 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Font Family ?','acf-typography'),
+			'label'			=> __('Show Font Family ?','acf-typography'),
+			'instructions'	=> __('When Font Family dont load, Font Weight & Preview Text also dont show ','acf-typography'),
 			'type'			=> 'radio',
 			'layout'		=> 'horizontal',
-			'name'			=> 'font_familys_?',
+			'name'			=> 'show_font_familys',
 			'choices'		=>	array(
 								1	=>	__('Yes','acf-font-awesome'),
 								0	=>	__('No','acf-font-awesome')
@@ -180,6 +181,7 @@ class acf_field_typography extends acf_field {
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Font Family','acf-typography'),
 			'type'			=> 'select',
+			'ui'			=> 1,
 			'name'			=> 'font-family',
 			'choices'		=>	$field['font_familys']
 		));
@@ -188,10 +190,10 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Font Weight ?','acf-typography'),
+			'label'			=> __('Show Font Weight ?','acf-typography'),
 			'type'			=> 'radio',
 			'layout'		=>  'horizontal',
-			'name'			=> 'font_weight_?',
+			'name'			=> 'show_font_weight',
 			'choices'		=>	array(
 								1	=>	__('Yes','acf-font-awesome'),
 								0	=>	__('No','acf-font-awesome')
@@ -201,6 +203,7 @@ class acf_field_typography extends acf_field {
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Font Weight','acf-typography'),
 			'type'			=> 'select',
+			'ui'			=> 1,
 			'name'			=> 'font-weight',
 			'choices'		=>	$field['stylefont']
 		));
@@ -208,10 +211,10 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Backup Font ?','acf-typography'),
+			'label'			=> __('Show Backup Font ?','acf-typography'),
 			'type'			=> 'radio',
 			'layout'		=>  'horizontal',
-			'name'			=> 'backupfont_?',
+			'name'			=> 'show_backup_font',
 			'choices'		=>	array(
 								1	=>	__('Yes','acf-font-awesome'),
 								0	=>	__('No','acf-font-awesome')
@@ -222,15 +225,16 @@ class acf_field_typography extends acf_field {
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Backup Font','acf-typography'),
 			'type'			=> 'select',
+			'ui'			=> 1,
 			'name'			=> 'backup-font',
 			'choices'		=>	$field['backupfont']
 		));
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Text Align ?','acf-typography'),
+			'label'			=> __('Show Text Align ?','acf-typography'),
 			'type'			=> 'radio',
 			'layout'  		=>  'horizontal',
-			'name'			=> 'text_align_?',
+			'name'			=> 'show_text_align',
 			'choices'		=>	array(
 									1	=>	__('Yes','acf-font-awesome'),
 									0	=>	__('No','acf-font-awesome')
@@ -240,6 +244,7 @@ class acf_field_typography extends acf_field {
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Text Align','acf-typography'),
 			'type'			=> 'select',
+			'ui'			=> 1,
 			'name'			=> 'text_align',
 			'choices'		=>	array(
 				'inherit',
@@ -252,10 +257,10 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Text direction ?','acf-typography'),
+			'label'			=> __('Show Text direction ?','acf-typography'),
 			'type'			=> 'radio',
 			'layout'  		=>  'horizontal',
-			'name'			=> 'text_direction_?',
+			'name'			=> 'show_text_direction',
 			'choices'		=>	array(
 								1	=>	__('Yes','acf-font-awesome'),
 								0	=>	__('No','acf-font-awesome')
@@ -265,16 +270,17 @@ class acf_field_typography extends acf_field {
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Text direction','acf-typography'),
 			'type'			=> 'select',
+			'ui'			=> 1,
 			'name'			=> 'direction',
-			'choices'		=>	array(  'rtl' => 'right to left',
-								 		'ltr' => 'left to right',)
+			'choices'		=>	array(  'ltr' => 'left to right',
+								 		'rtl' => 'right to left',)
 		));
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Font Size ?','acf-typography'),
+			'label'			=> __('Show Font Size ?','acf-typography'),
 			'type'			=> 'radio',
 			'layout'  		=>  'horizontal',
-			'name'			=> 'font_size_?',
+			'name'			=> 'show_font_size',
 			'choices'		=>	array(
 								1	=>	__('Yes','acf-font-awesome'),
 								0	=>	__('No','acf-font-awesome')
@@ -292,11 +298,11 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Line Height ?','acf-typography'), 
+			'label'			=> __('Show Line Height ?','acf-typography'), 
 			'instructions'	=> __('When line height don t load line height is 150%','acf-typography'),
 			'type'			=> 'radio',
 			'layout'  		=>  'horizontal',
-			'name'			=> 'line_height_?',
+			'name'			=> 'show_line_height',
 			'choices'		=>	array(
 									1	=>	__('Yes','acf-font-awesome'),
 									0	=>	__('No','acf-font-awesome')
@@ -313,10 +319,10 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Font Style ?','acf-typography'),
+			'label'			=> __('Show Font Style ?','acf-typography'),
 			'type'			=> 'radio',
 			'layout'  		=>  'horizontal',
-			'name'			=> 'font_style_?',
+			'name'			=> 'show_font_style',
 			'choices'		=>	array(
 									1	=>	__('Yes','acf-font-awesome'),
 									0	=>	__('No','acf-font-awesome')
@@ -326,6 +332,7 @@ class acf_field_typography extends acf_field {
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Font Style','acf-typography'),
 			'type'			=> 'select',
+			'ui'			=> 1,
 			'name'			=> 'font_style',
 			'choices'		=>	array(
 			 		'normal'	=> 'normal',
@@ -337,10 +344,10 @@ class acf_field_typography extends acf_field {
 
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Preview Text ?','acf-typography'),
+			'label'			=> __('Show Preview Text ?','acf-typography'),
 			'type'			=> 'radio',
 			'layout'  		=>  'horizontal',
-			'name'			=> 'preview_text_?',
+			'name'			=> 'show_preview_text',
 			'choices'		=>	array(
 									1	=>	__('Yes','acf-font-awesome'),
 									0	=>	__('No','acf-font-awesome')
@@ -372,7 +379,7 @@ class acf_field_typography extends acf_field {
             $field['value']['text_align']	 =	$field['text_align'];
             $field['value']['font_size']	 =	$field['font_size'];
            
-            if ($field['line_height_?']) {
+            if ($field['show_line_height']) {
             	$field['value']['line_height']	 =  $field['line_height'];
             } else {
             	$field['value']['line_height']	 =	'150%';
@@ -436,15 +443,15 @@ class acf_field_typography extends acf_field {
 
 		echo "<div>";
 
-			if ($field['font_familys_?']) 
+			if ($field['show_font_familys']) 
 				echo '<div class = "select2-container"> Font Family</div> ';
 
-			if ($field['font_weight_?'] & $field['font_familys_?'])
+			if ($field['show_font_weight'] & $field['show_font_familys'])
 				echo  '<div class = "select2-container"> Font Weight & Style </div>';
 			echo "<div>";
 
 				// Font Family selector
-				if ($field['font_familys_?']) {
+				if ($field['show_font_familys']) {
 
 					echo '<input name="' . $field['name'] . '[font-family]" id="' . $field['key'] . 'attribute" class = "select2-container" value="' . $field_value['font-family'] . '" />';
 				}
@@ -452,7 +459,7 @@ class acf_field_typography extends acf_field {
 
 
 				// Font Weight & Style selector
-				if ($field['font_weight_?'] & $field['font_familys_?']) {
+				if ($field['show_font_weight'] & $field['show_font_familys']) {
 				 	echo '<input name="' . $field['name'] . '[font-weight]" id="' . $field['key'] . '" value="' . $field_value['font-weight'] . '" class = "select2-container" type="hidden" style="width:300px"/>';
 				 }
 
@@ -460,15 +467,15 @@ class acf_field_typography extends acf_field {
 
 
 
-			if ($field['backupfont_?'])
+			if ($field['show_backup_font'])
 				echo '<div class = "select2-container"> Backup Font Family </div>';
 
-			if ($field['text_align_?'])
+			if ($field['show_text_align'])
 				echo '<div class = "select2-container"> Text Align </div>';
 			echo "<div>";
 
 				//Backup Font Family
-				if ($field['backupfont_?']) {
+				if ($field['show_backup_font']) {
 					echo '<select name="' . $field['name'] . '[backupfont]" class = "'. $field['key'] .'js-select2">';
 						foreach ( $defaults_fonts as $k => $v ) {
 							echo '<option value="' . $k . '"' . selected($field_value['backupfont'], $k, false) . ' >' . $k . '</option>' ;
@@ -478,7 +485,7 @@ class acf_field_typography extends acf_field {
 
 
 				// "Text Align";
-				if ($field['text_align_?']) {
+				if ($field['show_text_align']) {
 					echo '<select name="' . $field['name'] . '[text_align]" id="' . $field['key'] . 'align" class = "'. $field['key'] .'js-select2">';
 						foreach ( $text_align as $k ) {
 							echo '<option value="' . $k . '"' . selected($field_value['text_align'], $k, false) . ' >' . $k . '</option>' ;
@@ -491,21 +498,21 @@ class acf_field_typography extends acf_field {
 
 
 
-			if ($field['text_direction_?'])
+			if ($field['show_text_direction'])
 				echo "<div class = 'select2-container'>direction </div>";
 
 				echo "<div class = 'select2-container'> ";
 
-				if ($field['font_size_?'])
+				if ($field['show_font_size'])
 						echo "<div>Font Size</div>";
-				if ($field['line_height_?'])	
+				if ($field['show_line_height'])	
 						echo "<div> Line Height</div>";
 
 					 echo "</div>";
 			
 
 			// "Text direction";
-				if ($field['text_direction_?']) {
+				if ($field['show_text_direction']) {
 					echo '<select name="' . $field['name'] . '[direction]" class = "'. $field['key'] .'js-select2">';
 						foreach ( $text_direction as $k => $v) {
 							echo '<option value="' . $k . '"' . selected($field_value['direction'], $k, false) . ' >' . $v . '</option>' ;
@@ -517,10 +524,10 @@ class acf_field_typography extends acf_field {
 
 			echo "<div class = 'select2-container'>";
 
-				if ($field['font_size_?']) {
+				if ($field['show_font_size']) {
 					echo '<input type="number"  min="1"  name="' . $field['name'] . '[font_size]" type="text" id="' . $field['key'] . 'size" value="' . $field_value['font_size'] . '" >';
 				}
-				if ($field['line_height_?']) {
+				if ($field['show_line_height']) {
 					//echo 'Line Height';
 					echo '<input type="number"  min="1"  name="' . $field['name'] . '[line_height]" type="text" id="' . $field['key'] . 'line" class = ""  value="' . $field_value['line_height'] . '" >' ;
 				}
@@ -529,11 +536,11 @@ class acf_field_typography extends acf_field {
 			echo "</div>";
 
 
-			if ($field['font_style_?'])
+			if ($field['show_font_style'])
 				echo '<div class = "select2-container"> Font Style </div>';
 			echo "<div>";
 			// "Font Style";
-					if ($field['font_style_?']) {
+					if ($field['show_font_style']) {
 						echo '<select name="' . $field['name'] . '[font_style]" class = "'. $field['key'] .'js-select2">';
 							foreach ( $font_style as $k => $v) {
 								echo '<option value="' . $k . '"' . selected($field_value['font_style'], $k, false) . ' >' . $v . '</option>' ;
@@ -545,7 +552,7 @@ class acf_field_typography extends acf_field {
 		echo "</div>";
 
 
-		if ($field['preview_text_?'] & $field['font_familys_?']) {
+		if ($field['show_preview_text'] & $field['show_font_familys']) {
 			echo '  
 	    	   		<label>Preview Text:</label>
         				<div id="' . $field['key'] . 'preview_font">Reyhoun is Awesome :) <br /> 1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
