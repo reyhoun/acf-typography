@@ -94,13 +94,13 @@ class acf_field_typography extends acf_field {
 			'show_font_style'		=> 1,
 			'show_preview_text'		=> 1,
 			'font-family'		=> '',
-			'font-weight'		=> '',
-            'backup-font'		=> 'Tahoma,Geneva, sans-serif',
+			'font-weight'		=> '400',
+            'backup-font'		=> 'Arial, Helvetica, sans-serif',
             'text_align'		=>	'left',
-            'direction'			=> '',
+            'direction'			=> 'ltr',
 			'font_size'			=> 20,
 			'line_height'		=> 25,
-			'font_style'		=> '',
+			'font_style'		=> 'normal',
 			'default_value'		=> '',//pak
 			'new_lines'			=> '',
 			'maxlength'			=> '',
@@ -110,6 +110,7 @@ class acf_field_typography extends acf_field {
 			'rows'				=> '',
 			'font_familys'		=> $font_familys,
 			'stylefont'	 		=> array( 
+						'100'		=> '100',
 						'300'		=> '300',
 						'400'		=> '400',
 						'600'		=> '600',
@@ -117,6 +118,7 @@ class acf_field_typography extends acf_field {
 						'800'		=> '800'
 					),
 			'backupfont'		=> array(
+						"Arial, Helvetica, sans-serif"                          => "Arial, Helvetica, sans-serif",
             			"'Arial Black', Gadget, sans-serif"                     => "'Arial Black', Gadget, sans-serif",
             			"'Bookman Old Style', serif"                            => "'Bookman Old Style', serif",
             			"'Comic Sans MS', cursive"                              => "'Comic Sans MS', cursive",
@@ -133,7 +135,6 @@ class acf_field_typography extends acf_field {
             			"'Times New Roman', Times,serif"                        => "'Times New Roman', Times, serif",
             			"'Trebuchet MS', Helvetica, sans-serif"                 => "'Trebuchet MS', Helvetica, sans-serif",
             			"Verdana, Geneva, sans-serif"                           => "Verdana, Geneva, sans-serif",
-            			"Arial, Helvetica, sans-serif"                          => "Arial, Helvetica, sans-serif",
         			)
 		);
 
