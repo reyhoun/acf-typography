@@ -293,7 +293,7 @@ class acf_field_typography extends acf_field {
 			'label'			=> __('Font Size','acf-typography'),
 			'type'			=> 'number',
 			'name'			=> 'font_size',
-			'prepend'		=> 'px',
+			'append'		=> 'px',
 		));
 
 
@@ -314,7 +314,7 @@ class acf_field_typography extends acf_field {
 			'label'			=> __('Line Height','acf-typography'),
 			'type'			=> 'number',
 			'name'			=> 'line_height',
-			'prepend'		=> 'px',
+			'append'		=> 'px',
 		));
 
 
@@ -420,9 +420,6 @@ class acf_field_typography extends acf_field {
 
 		echo '
 		<style>
-			.acf-typography-preview {
-				margin-top: 15px;
-			}
 			.acf-typography-preview .acf-typography-field-label {
 				text-align: left;
 			}
@@ -437,6 +434,7 @@ class acf_field_typography extends acf_field {
 			.acf-typography-subfield {
 				float: left;
 				width: 50%;
+				margin-bottom: 10px;
 			}
 			.acf-typography-field-label {
 				font-weight: bold;
@@ -533,20 +531,26 @@ class acf_field_typography extends acf_field {
 				if ($field['show_font_style']){
 					echo "<div class='acf-typography-subfield acf-typography-font-style'>";
 						echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Style</label>';
-						if ($field['show_font_style']) {
-							echo '<select name="' . $field['name'] . '[font_style]" class="'. $field['key'] .'js-select2">';
-								foreach ( $font_style as $k => $v) {
-									echo '<option value="' . $k . '"' . selected($field_value['font_style'], $k, false) . ' >' . $v . '</option>' ;
-								}
-							echo '</select>';
-						}
+
+						echo '<select name="' . $field['name'] . '[font_style]" class="'. $field['key'] .'js-select2">';
+							foreach ( $font_style as $k => $v) {
+								echo '<option value="' . $k . '"' . selected($field_value['font_style'], $k, false) . ' >' . $v . '</option>' ;
+							}
+						echo '</select>';
 					echo "</div>";
 				}
 
 				if ($field['show_font_size']) {
 					echo "<div class='acf-typography-subfield acf-typography-font-size'>";
 						echo "<label class='acf-typography-field-label' for='" . $field['key'] . "'>Font Size</label>";
-						echo '<input class="acf-typography-field-font-size" type="number"  min="1"  name="' . $field['name'] . '[font_size]" type="text" id="' . $field['key'] . 'size" value="' . $field_value['font_size'] . '" >';
+						echo '
+							<div class="acf-typography-field-font-size">
+								<div class="acf-input-append">px</div>
+								<div class="acf-input-wrap">
+									<input type="number" name="' . $field['name'] . '[font_size]" id="' . $field['key'] . 'size" value="' . $field_value['font_size'] . '" min="1" max="" step="any" placeholder="">
+								</div>
+							</div>
+						';
 					echo "</div>";
 				}
 
@@ -554,7 +558,14 @@ class acf_field_typography extends acf_field {
 				if ($field['show_line_height']) {
 					echo "<div class='acf-typography-subfield acf-typography-font-line-height'>";
 						echo "<label class='acf-typography-field-label' for='" . $field['key'] . "'>Line Height</label>";
-						echo '<input class="acf-typography-field-line-height" type="number"  min="1"  name="' . $field['name'] . '[line_height]" type="text" id="' . $field['key'] . 'line" class=""  value="' . $field_value['line_height'] . '" >' ;
+						echo '
+							<div class="acf-typography-field-line-height">
+								<div class="acf-input-append">px</div>
+								<div class="acf-input-wrap">
+									<input type="number" name="' . $field['name'] . '[line_height]" id="' . $field['key'] . 'line" value="' . $field_value['line_height'] . '" min="1" max="" step="any" placeholder="">
+								</div>
+							</div>
+						';
 					echo "</div>";
 				}
 
