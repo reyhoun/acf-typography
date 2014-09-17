@@ -64,7 +64,7 @@ class acf_field_typography extends acf_field {
 			    {
 			       foreach ($value as $key1 => $value1) {
 
-			       		if($key1== 'family'){
+			       		if($key1== "family"){
 			       			$valueset = array($value1 => $value1);
 			        		// array_push($font_familys, $valueset); 
 			        		$font_familys = $font_familys + $valueset;
@@ -118,23 +118,23 @@ class acf_field_typography extends acf_field {
 						'800'		=> '800'
 					),
 			'backupfont'		=> array(
-						"Arial, Helvetica, sans-serif"                          => "Arial, Helvetica, sans-serif",
-            			"'Arial Black', Gadget, sans-serif"                     => "'Arial Black', Gadget, sans-serif",
-            			"'Bookman Old Style', serif"                            => "'Bookman Old Style', serif",
-            			"'Comic Sans MS', cursive"                              => "'Comic Sans MS', cursive",
-            			"Courier, monospace"                                    => "Courier, monospace",
-            			"Garamond, serif"                                       => "Garamond, serif",
-            			"Georgia, serif"                                        => "Georgia, serif",
-            			"Impact, Charcoal, sans-serif"                          => "Impact, Charcoal, sans-serif",
-            			"'Lucida Console', Monaco, monospace"                   => "'Lucida Console', Monaco, monospace",
-            			"'Lucida Sans Unicode', 'Lucida Grande', sans-serif"    => "'Lucida Sans Unicode', 'Lucida Grande', sans-serif",
-            			"'MS Sans Serif', Geneva, sans-serif"                   => "'MS Sans Serif', Geneva, sans-serif",
-            			"'MS Serif', 'New York', sans-serif"                    => "'MS Serif', 'New York', sans-serif",
-            			"'Palatino Linotype', 'Book Antiqua', Palatino, serif"  => "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
-            			"Tahoma,Geneva, sans-serif"                             => "Tahoma, Geneva, sans-serif",
-            			"'Times New Roman', Times,serif"                        => "'Times New Roman', Times, serif",
-            			"'Trebuchet MS', Helvetica, sans-serif"                 => "'Trebuchet MS', Helvetica, sans-serif",
-            			"Verdana, Geneva, sans-serif"                           => "Verdana, Geneva, sans-serif",
+						'Arial, Helvetica, sans-serif'                          => 'Arial, Helvetica, sans-serif',
+            			'"Arial Black", Gadget, sans-serif'                     => '"Arial Black", Gadget, sans-serif',
+            			'"Bookman Old Style", serif'                            => '"Bookman Old Style", serif',
+            			'"Comic Sans MS", cursive'                              => '"Comic Sans MS", cursive',
+            			'Courier, monospace'                                    => 'Courier, monospace',
+            			'Garamond, serif'                                       => 'Garamond, serif',
+            			'Georgia, serif'                                        => 'Georgia, serif',
+            			'Impact, Charcoal, sans-serif'                          => 'Impact, Charcoal, sans-serif',
+            			'"Lucida Console", Monaco, monospace'                   => '"Lucida Console", Monaco, monospace',
+            			'"Lucida Sans Unicode", "Lucida Grande", sans-serif'    => '"Lucida Sans Unicode", "Lucida Grande", sans-serif',
+            			'"MS Sans Serif", Geneva, sans-serif'                   => '"MS Sans Serif", Geneva, sans-serif',
+            			'"MS Serif", "New York", sans-serif'                    => '"MS Serif", "New York", sans-serif',
+            			'"Palatino Linotype", "Book Antiqua", Palatino, serif'  => '"Palatino Linotype", "Book Antiqua", Palatino, serif',
+            			'Tahoma,Geneva, sans-serif'                             => 'Tahoma, Geneva, sans-serif',
+            			'"Times New Roman", Times,serif'                        => '"Times New Roman", Times, serif',
+            			'"Trebuchet MS", Helvetica, sans-serif'                 => '"Trebuchet MS", Helvetica, sans-serif',
+            			'Verdana, Geneva, sans-serif'                           => 'Verdana, Geneva, sans-serif',
         			)
 		);
 
@@ -410,54 +410,6 @@ class acf_field_typography extends acf_field {
 
 
 
-
-
-
-
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	//============================== CSS style ==================================
-	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-		echo '
-		<style>
-			.acf-typography-preview .acf-typography-field-label {
-				text-align: left;
-			}
-			.acf-typography-preview-font {
-				text-align: center;
-				padding: 20px;
-				border: solid 1px #ddd;
-				border-radius: 3px;
-				background: #f9f9f9;
-				line-height: 150%;
-			}
-			.acf-typography-subfield {
-				float: left;
-				width: 33%;
-				margin-bottom: 10px;
-			}
-			.acf-typography-field-label {
-				font-weight: bold;
-				line-height: 250%;
-			}
-			.select2-container,
-			.acf-typography-field-font-size,
-			.acf-typography-field-line-height {
-				display: block;
-				width: 80%;
-			}
-			.clearfix:before, .clearfix:after {
-				content: " ";
-				display: table;
-			}
-			.clearfix:after {
-				clear: both;
-			}
-		</style>
-		';
-
-
-
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 	//========================== show render field ==============================
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -468,65 +420,65 @@ class acf_field_typography extends acf_field {
 
 			// Font Family selector
 			if ($field['show_font_familys']){
-				echo "<div class='acf-typography-subfield acf-typography-font-familys'>";
+				echo '<div class="acf-typography-subfield acf-typography-font-familys">';
 					echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Family</label> ';
 					echo '<input name="' . $field['name'] . '[font-family]" id="' . $field['key'] . 'attribute" class="select2-container" value="' . $field_value['font-family'] . '" />';
-				echo "</div>";
+				echo '</div>';
 			}
 
 
 			// Font Weight selector
 			if ($field['show_font_weight'] & $field['show_font_familys']) {
-				echo "<div class='acf-typography-subfield acf-typography-font-weight'>";
+				echo '<div class="acf-typography-subfield acf-typography-font-weight">';
 					echo  '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Weight</label>';
 			 		echo '<input name="' . $field['name'] . '[font-weight]" id="' . $field['key'] . '" value="' . $field_value['font-weight'] . '" class="select2-container" type="hidden" />';
-			 	echo "</div>";
+			 	echo '</div>';
 			 }
 
 
 
 				//Backup Font Family
 				if ($field['show_backup_font']) {
-					echo "<div class='acf-typography-subfield acf-typography-backup-font'>";
+					echo '<div class="acf-typography-subfield acf-typography-backup-font">';
 						echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Backup Font Family</label>';
 						echo '<select name="' . $field['name'] . '[backupfont]" class="'. $field['key'] .'js-select2">';
 							foreach ( $defaults_fonts as $k => $v ) {
 								echo '<option value="' . $k . '"' . selected($field_value['backupfont'], $k, false) . ' >' . $k . '</option>' ;
 							}
 						echo '</select>';
-					echo "</div>";
+					echo '</div>';
 				}
 
 
 				// "Text Align";
 				if ($field['show_text_align']) {
-					echo "<div class='acf-typography-subfield acf-typography-text-align'>";
+					echo '<div class="acf-typography-subfield acf-typography-text-align">';
 						echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Text Align</label>';
 						echo '<select name="' . $field['name'] . '[text_align]" id="' . $field['key'] . 'align" class="'. $field['key'] .'js-select2">';
 							foreach ( $text_align as $k ) {
 								echo '<option value="' . $k . '"' . selected($field_value['text_align'], $k, false) . ' >' . $k . '</option>' ;
 							}
 						echo '</select>';
-					echo "</div>";
+					echo '</div>';
 				}
 
 			
 
 			// "Text direction";
 				if ($field['show_text_direction']) {
-					echo "<div class='acf-typography-subfield acf-typography-direction'>";
-						echo "<label class='acf-typography-field-label' for='" . $field['key'] . "'>Text Direction</label>";
+					echo '<div class="acf-typography-subfield acf-typography-direction">';
+						echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Text Direction</label>';
 						echo '<select name="' . $field['name'] . '[direction]" class="'. $field['key'] .'js-select2">';
 							foreach ( $text_direction as $k => $v) {
 								echo '<option value="' . $k . '"' . selected($field_value['direction'], $k, false) . ' >' . $v . '</option>' ;
 							}
 						echo '</select>';
-					echo "</div>";
+					echo '</div>';
 				}
 
 			
 				if ($field['show_font_style']){
-					echo "<div class='acf-typography-subfield acf-typography-font-style'>";
+					echo '<div class="acf-typography-subfield acf-typography-font-style">';
 						echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Style</label>';
 
 						echo '<select name="' . $field['name'] . '[font_style]" class="'. $field['key'] .'js-select2">';
@@ -534,12 +486,12 @@ class acf_field_typography extends acf_field {
 								echo '<option value="' . $k . '"' . selected($field_value['font_style'], $k, false) . ' >' . $v . '</option>' ;
 							}
 						echo '</select>';
-					echo "</div>";
+					echo '</div>';
 				}
 
 				if ($field['show_font_size']) {
-					echo "<div class='acf-typography-subfield acf-typography-font-size'>";
-						echo "<label class='acf-typography-field-label' for='" . $field['key'] . "'>Font Size</label>";
+					echo '<div class="acf-typography-subfield acf-typography-font-size">';
+						echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Font Size</label>';
 						echo '
 							<div class="acf-typography-field-font-size">
 								<div class="acf-input-append">px</div>
@@ -548,13 +500,13 @@ class acf_field_typography extends acf_field {
 								</div>
 							</div>
 						';
-					echo "</div>";
+					echo '</div>';
 				}
 
 
 				if ($field['show_line_height']) {
-					echo "<div class='acf-typography-subfield acf-typography-font-line-height'>";
-						echo "<label class='acf-typography-field-label' for='" . $field['key'] . "'>Line Height</label>";
+					echo '<div class="acf-typography-subfield acf-typography-font-line-height">';
+						echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Line Height</label>';
 						echo '
 							<div class="acf-typography-field-line-height">
 								<div class="acf-input-append">px</div>
@@ -563,10 +515,10 @@ class acf_field_typography extends acf_field {
 								</div>
 							</div>
 						';
-					echo "</div>";
+					echo '</div>';
 				}
 
-		echo "</div>";
+		echo '</div>';
 
 
 
@@ -582,12 +534,12 @@ class acf_field_typography extends acf_field {
 	//============================= javascript ==================================
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-  		echo "
+  		echo '
 			<script>
 				(function($){
 
 
-			$('.". $field['key'] ."js-select2').select2();
+			$(".'. $field['key'] .'js-select2").select2();
 
 
 		
@@ -595,13 +547,13 @@ class acf_field_typography extends acf_field {
 		//============ Run preview in first time ==================
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-			preview($('#" . $field['key'] . "attribute').val(),$('#" . $field['key'] . "').val());
+			preview($("#' . $field['key'] . 'attribute").val(),$("#' . $field['key'] . '").val());
 
-			$('#". $field['key'] . "preview_font').css('font-size', $('#" . $field['key'] . "size').val() + 'px');
+			$("#'. $field['key'] . 'preview_font").css("font-size", $("#' . $field['key'] . 'size").val() + "px");
 
-			$('#". $field['key'] . "preview_font').css('line-height', $('#" . $field['key'] . "line').val()+ 'px');
+			$("#'. $field['key'] . 'preview_font").css("line-height", $("#' . $field['key'] . 'line").val()+ "px");
 
-			$('#". $field['key'] . "preview_font').css('text-align', $('#" . $field['key'] . "align').val());
+			$("#'. $field['key'] . 'preview_font").css("text-align", $("#' . $field['key'] . 'align").val());
 
 
 
@@ -613,8 +565,8 @@ class acf_field_typography extends acf_field {
 			var font_family_index = 0;
 			var name_font;
 			var arr = $.ajax({
-			  url: '../wp-content/plugins/acf-typography/gf.json',
-			  dataType: 'json',
+			  url: "../wp-content/plugins/acf-typography/gf.json",
+			  dataType: "json",
 			  async: false,
 			});
 
@@ -628,31 +580,25 @@ class acf_field_typography extends acf_field {
 		//========= Font Family list by attribute ===============
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-   			$('#" . $field['key'] . "attribute').select2( {
+   			$("#' . $field['key'] . 'attribute").select2( {
 
     			   query: function (query) {
 
     			       var data = {results: []}, i;
 
 
-					  		 for (i in  data_array['items']) {
+					  		 for (i in  data_array["items"]) {
 					  		 	
-					  		 	var Big1 = data_array['items'][i]['family'].toLowerCase();
+					  		 	var Big1 = data_array["items"][i]["family"].toLowerCase();
 					  		 	var Big2 = query.term.toLowerCase();
 
 					  		 	if(Big1.indexOf(Big2) > -1){
 
-    			          			 data.results.push({id: data_array['items'][i]['family'], text: data_array['items'][i]['family'], data: i});
+    			          			 data.results.push({id: data_array["items"][i]["family"], text: data_array["items"][i]["family"], data: i});
     			          		};
     			       		}
 
 
-
-    			       // for (i in  data_array['items']) {
-
-    			       //     data.results.push({id: data_array['items'][i]['family'], text: data_array['items'][i]['family'], data: i});
-
-    			       // }
     			       query.callback(data);
     			   },
 
@@ -671,27 +617,27 @@ class acf_field_typography extends acf_field {
 		//=============== First loade Font Weight =================
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-   			$('#" . $field['key'] . "attribute').ready( function(e) {
+   			$("#' . $field['key'] . 'attribute").ready( function(e) {
 
-       			$('#" . $field['key'] . "').select2({
+       			$("#' . $field['key'] . '").select2({
 
         			   query: function (query) {
 
 
-        			   			for (i in  data_array['items']) {
+        			   			for (i in  data_array["items"]) {
 					
-        			    		   if (data_array['items'][i]['family'] == $('#" . $field['key'] . "attribute').val()) {
+        			    		   if (data_array["items"][i]["family"] == $("#' . $field['key'] . 'attribute").val()) {
 			
         			    		   		var data = {results: []}, i;
 			
-        			       				for (e in  data_array['items'][i]['variants']) {
+        			       				for (e in  data_array["items"][i]["variants"]) {
 					
-        			       		 		  	 if (data_array['items'][i]['variants'][e] == 'regular') {
+        			       		 		  	 if (data_array["items"][i]["variants"][e] == "regular") {
 
-        			       						data.results.push({id: '400' , text: '400'});
+        			       						data.results.push({id: "400" , text: "400"});
         			       					} 
         			       					else{
-        			       						data.results.push({id: data_array['items'][i]['variants'][e] , text: data_array['items'][i]['variants'][e]});
+        			       						data.results.push({id: data_array["items"][i]["variants"][e] , text: data_array["items"][i]["variants"][e]});
         			       					};
         			       				}
         			       				// console.log(i);
@@ -727,42 +673,42 @@ class acf_field_typography extends acf_field {
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
    			// var font_family_index = 0;
-   			$('#" . $field['key'] . "attribute').on('change', function(e) {
+   			$("#' . $field['key'] . 'attribute").on("change", function(e) {
 
-   					preview(data_array['items'][e.added['data']]['family'],data_array['items'][e.added['data']]['variants'][0]);
+   					preview(data_array["items"][e.added["data"]]["family"],data_array["items"][e.added["data"]]["variants"][0]);
    			
-   					font_family_index = e.added['data'];
+   					font_family_index = e.added["data"];
 
-    			   $('#" . $field['key'] . "').select2({
+    			   $("#' . $field['key'] . '").select2({
 
      			      query: function (query) {
 
      			          var data = {results: []}, i;
 	
-     			          		for (i in  data_array['items'][e.added['data']]['variants']) {
+     			          		for (i in  data_array["items"][e.added["data"]]["variants"]) {
 
-     			          		    if (data_array['items'][e.added['data']]['variants'][i] == 'regular') {
+     			          		    if (data_array["items"][e.added["data"]]["variants"][i] == "regular") {
 
-        			       						data.results.push({id: '400' , text: '400'});
+        			       						data.results.push({id: "400" , text: "400"});
         			       					} 
         			       					else{
-        			       						data.results.push({id: data_array['items'][e.added['data']]['variants'][i] , text: data_array['items'][e.added['data']]['variants'][i]});
+        			       						data.results.push({id: data_array["items"][e.added["data"]]["variants"][i] , text: data_array["items"][e.added["data"]]["variants"][i]});
         			       					};
 
      			          		}
 
      			          query.callback(data);
-     			          // name_font = data_array['items'][e.added['data']]['variants'][i];
+     			          // name_font = data_array["items"][e.added["data"]]["variants"][i];
 		
      			      },
 
      			      initSelection : function (element, callback) {
 
 
-      			      var data = {id: data_array['items'][e.added['data']]['variants'][0] , text: data_array['items'][e.added['data']]['variants'][0]};
-      			      $('#" . $field['key'] . "').val(data_array['items'][e.added['data']]['variants'][0]); 
+      			      var data = {id: data_array["items"][e.added["data"]]["variants"][0] , text: data_array["items"][e.added["data"]]["variants"][0]};
+      			      $("#' . $field['key'] . '").val(data_array["items"][e.added["data"]]["variants"][0]); 
       			      callback(data);
-      			      // preview($('#" . $field['key'] . "attribute').val());
+      			      // preview($("#' . $field['key'] . 'attribute").val());
 		
       				  }
 
@@ -774,9 +720,9 @@ class acf_field_typography extends acf_field {
 		//================= Font style change =====================
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-			$('#" . $field['key'] . "').on('change',function(e){
+			$("#' . $field['key'] . '").on("change",function(e){
 
-				preview(data_array['items'][font_family_index]['family'],e.added['id']);
+				preview(data_array["items"][font_family_index]["family"],e.added["id"]);
 
 			});
 
@@ -786,9 +732,9 @@ class acf_field_typography extends acf_field {
 		//================== Font size change =====================
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-			$('#" . $field['key'] . "size').on('input',function(){
+			$("#' . $field['key'] . 'size").on("input",function(){
 
-				$('#". $field['key'] . "preview_font').css('font-size', $(this).val() + 'px');
+				$("#'. $field['key'] . 'preview_font").css("font-size", $(this).val() + "px");
 
 			});
 
@@ -797,9 +743,9 @@ class acf_field_typography extends acf_field {
 		//================== Font line change =====================
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-			$('#" . $field['key'] . "line').on('input',function(){
+			$("#' . $field['key'] . 'line").on("input",function(){
 
-				$('#". $field['key'] . "preview_font').css('line-height', $(this).val()+ 'px');
+				$("#'. $field['key'] . 'preview_font").css("line-height", $(this).val()+ "px");
 
 			});
 
@@ -808,9 +754,9 @@ class acf_field_typography extends acf_field {
 		//================= Font align change =====================
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-			$('#" . $field['key'] . "align').on('change',function(){
+			$("#' . $field['key'] . 'align").on("change",function(){
 
-				$('#". $field['key'] . "preview_font').css('text-align', $(this).val());
+				$("#'. $field['key'] . 'preview_font").css("text-align", $(this).val());
 
 			});
 
@@ -822,10 +768,10 @@ class acf_field_typography extends acf_field {
 
        		 function preview(name , stl) {
         	
-       		 	if ($('#". $field['key'] . "preview_style').length) {
+       		 	if ($("#'. $field['key'] . 'preview_style").length) {
         	
-        			var css = 	'@import url(http://fonts.googleapis.com/css?family=' + name.split(' ').join('+') + ':' + stl + '); #". $field['key'] . "preview_font { font-family: ' + name + '; }';
-        			$('#". $field['key'] . "preview_style').html(css);
+        			var css = 	"@import url(http://fonts.googleapis.com/css?family=" + name.split(" ").join("+") + ":" + stl + "); #'. $field['key'] . 'preview_font { font-family: " + name + "; }";
+        			$("#'. $field['key'] . 'preview_style").html(css);
         		}
 
         	}
@@ -834,7 +780,7 @@ class acf_field_typography extends acf_field {
 
 
 				})(jQuery);
-			</script> ";
+			</script> ';
 
 
 
@@ -861,9 +807,9 @@ class acf_field_typography extends acf_field {
 		// wp_enqueue_script('acf-input-typography');
 		
 		
-		// // register & include CSS  
-		// wp_register_style( 'acf-input-typography', "{$dir}css/input.css" ); 
-		// wp_enqueue_style('acf-input-typography');
+		// register & include CSS  
+		wp_register_style( 'acf-input-typography', "{$dir}css/input.css" ); 
+		wp_enqueue_style('acf-input-typography');
 		
 	}
 	

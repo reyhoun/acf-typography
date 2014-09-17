@@ -1,0 +1,33 @@
+.acf-typography-preview .acf-typography-field-label {
+	text-align: left;
+}
+.acf-typography-preview-font {
+	text-align: center;
+	padding: 20px;
+	border: solid 1px #ddd;
+	border-radius: 3px;
+	background: #f9f9f9;
+	line-height: 150%;
+}
+.acf-typography-subfield {
+	float: left;
+	width: 33%;
+	margin-bottom: 10px;
+}
+.acf-typography-field-label {
+	font-weight: bold;
+	line-height: 250%;
+}
+.select2-container,
+.acf-typography-field-font-size,
+.acf-typography-field-line-height {
+	display: block;
+	width: 80%;
+}
+.clearfix:before, .clearfix:after {
+	content: " ";
+	display: table;
+}
+.clearfix:after {
+	clear: both;
+}
