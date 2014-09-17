@@ -433,19 +433,16 @@ class acf_field_typography extends acf_field {
 			}
 			.acf-typography-subfield {
 				float: left;
-				width: 50%;
+				width: 33%;
 				margin-bottom: 10px;
 			}
 			.acf-typography-field-label {
 				font-weight: bold;
 				line-height: 250%;
-			}	
+			}
+			.select2-container,
 			.acf-typography-field-font-size,
 			.acf-typography-field-line-height {
-				width: 50% !important;
-				display: block;
-			}	
-			.select2-container {
 				display: block;
 				width: 80%;
 			}
@@ -482,7 +479,7 @@ class acf_field_typography extends acf_field {
 			if ($field['show_font_weight'] & $field['show_font_familys']) {
 				echo "<div class='acf-typography-subfield acf-typography-font-weight'>";
 					echo  '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Weight</label>';
-			 		echo '<input name="' . $field['name'] . '[font-weight]" id="' . $field['key'] . '" value="' . $field_value['font-weight'] . '" class="select2-container" type="hidden" style="width:300px"/>';
+			 		echo '<input name="' . $field['name'] . '[font-weight]" id="' . $field['key'] . '" value="' . $field_value['font-weight'] . '" class="select2-container" type="hidden" />';
 			 	echo "</div>";
 			 }
 
