@@ -480,10 +480,10 @@ class acf_field_typography extends acf_field {
 			}
 
 
-			// Font Weight & Style selector
+			// Font Weight selector
 			if ($field['show_font_weight'] & $field['show_font_familys']) {
 				echo "<div class='acf-typography-subfield acf-typography-font-weight'>";
-					echo  '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Weight & Style</label>';
+					echo  '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Weight</label>';
 			 		echo '<input name="' . $field['name'] . '[font-weight]" id="' . $field['key'] . '" value="' . $field_value['font-weight'] . '" class="select2-container" type="hidden" style="width:300px"/>';
 			 	echo "</div>";
 			 }
