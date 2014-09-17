@@ -420,17 +420,43 @@ class acf_field_typography extends acf_field {
 
 		echo '
 		<style>
-			.field_type-typography .select2-container {
-				width: 40%;
-				margin-left: 45px;
-				margin-right: 11px;
-
+			.acf-typography-preview {
+				margin-top: 15px;
 			}
-			#' . $field['key'] . 'preview_font {
-				font-size: 20px;
+			.acf-typography-preview .acf-typography-field-label {
+				text-align: left;
+			}
+			.acf-typography-preview-font {
 				text-align: center;
 				padding: 20px;
-			}			
+				border: solid 1px #ddd;
+				border-radius: 3px;
+				background: #f9f9f9;
+			}
+			.acf-typography-subfield {
+				float: left;
+				width: 50%;
+			}
+			.acf-typography-field-label {
+				font-weight: bold;
+				line-height: 250%;
+			}	
+			.acf-typography-field-font-size,
+			.acf-typography-field-line-height {
+				width: 50% !important;
+				display: block;
+			}	
+			.select2-container {
+				display: block;
+				width: 80%;
+			}
+			.clearfix:before, .clearfix:after {
+				content: " ";
+				display: table;
+			}
+			.clearfix:after {
+				clear: both;
+			}
 		</style>
 		';
 
@@ -442,12 +468,12 @@ class acf_field_typography extends acf_field {
 
 		// echo $field['key'];
 
-		echo "<div class='clear'>";
+		echo "<div class='clearfix'>";
 
 			// Font Family selector
 			if ($field['show_font_familys']){
 				echo "<div class='acf-typography-subfield acf-typography-font-familys'>";
-					echo '<div class="select2-container"> Font Family</div> ';
+					echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Family</label> ';
 					echo '<input name="' . $field['name'] . '[font-family]" id="' . $field['key'] . 'attribute" class="select2-container" value="' . $field_value['font-family'] . '" />';
 				echo "</div>";
 			}
@@ -456,7 +482,7 @@ class acf_field_typography extends acf_field {
 			// Font Weight & Style selector
 			if ($field['show_font_weight'] & $field['show_font_familys']) {
 				echo "<div class='acf-typography-subfield acf-typography-font-weight'>";
-					echo  '<div class="select2-container"> Font Weight & Style </div>';
+					echo  '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Weight & Style</label>';
 			 		echo '<input name="' . $field['name'] . '[font-weight]" id="' . $field['key'] . '" value="' . $field_value['font-weight'] . '" class="select2-container" type="hidden" style="width:300px"/>';
 			 	echo "</div>";
 			 }
@@ -466,7 +492,7 @@ class acf_field_typography extends acf_field {
 				//Backup Font Family
 				if ($field['show_backup_font']) {
 					echo "<div class='acf-typography-subfield acf-typography-backup-font'>";
-						echo '<div class="select2-container"> Backup Font Family </div>';
+						echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Backup Font Family</label>';
 						echo '<select name="' . $field['name'] . '[backupfont]" class="'. $field['key'] .'js-select2">';
 							foreach ( $defaults_fonts as $k => $v ) {
 								echo '<option value="' . $k . '"' . selected($field_value['backupfont'], $k, false) . ' >' . $k . '</option>' ;
@@ -479,7 +505,7 @@ class acf_field_typography extends acf_field {
 				// "Text Align";
 				if ($field['show_text_align']) {
 					echo "<div class='acf-typography-subfield acf-typography-text-align'>";
-						echo '<div class="select2-container"> Text Align </div>';
+						echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Text Align</label>';
 						echo '<select name="' . $field['name'] . '[text_align]" id="' . $field['key'] . 'align" class="'. $field['key'] .'js-select2">';
 							foreach ( $text_align as $k ) {
 								echo '<option value="' . $k . '"' . selected($field_value['text_align'], $k, false) . ' >' . $k . '</option>' ;
@@ -493,7 +519,7 @@ class acf_field_typography extends acf_field {
 			// "Text direction";
 				if ($field['show_text_direction']) {
 					echo "<div class='acf-typography-subfield acf-typography-direction'>";
-						echo "<div class='select2-container'>direction </div>";
+						echo "<label class='acf-typography-field-label' for='" . $field['key'] . "'>Text Direction</label>";
 						echo '<select name="' . $field['name'] . '[direction]" class="'. $field['key'] .'js-select2">';
 							foreach ( $text_direction as $k => $v) {
 								echo '<option value="' . $k . '"' . selected($field_value['direction'], $k, false) . ' >' . $v . '</option>' ;
@@ -503,44 +529,42 @@ class acf_field_typography extends acf_field {
 				}
 
 			
+				if ($field['show_font_style']){
+					echo "<div class='acf-typography-subfield acf-typography-font-style'>";
+						echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Style</label>';
+						if ($field['show_font_style']) {
+							echo '<select name="' . $field['name'] . '[font_style]" class="'. $field['key'] .'js-select2">';
+								foreach ( $font_style as $k => $v) {
+									echo '<option value="' . $k . '"' . selected($field_value['font_style'], $k, false) . ' >' . $v . '</option>' ;
+								}
+							echo '</select>';
+						}
+					echo "</div>";
+				}
 
 				if ($field['show_font_size']) {
 					echo "<div class='acf-typography-subfield acf-typography-font-size'>";
-						echo "<div>Font Size</div>";
-						echo '<input type="number"  min="1"  name="' . $field['name'] . '[font_size]" type="text" id="' . $field['key'] . 'size" value="' . $field_value['font_size'] . '" >';
+						echo "<label class='acf-typography-field-label' for='" . $field['key'] . "'>Font Size</label>";
+						echo '<input class="acf-typography-field-font-size" type="number"  min="1"  name="' . $field['name'] . '[font_size]" type="text" id="' . $field['key'] . 'size" value="' . $field_value['font_size'] . '" >';
 					echo "</div>";
 				}
 
 
 				if ($field['show_line_height']) {
 					echo "<div class='acf-typography-subfield acf-typography-font-line-height'>";
-						echo "<div> Line Height</div>";
-						echo '<input type="number"  min="1"  name="' . $field['name'] . '[line_height]" type="text" id="' . $field['key'] . 'line" class=""  value="' . $field_value['line_height'] . '" >' ;
+						echo "<label class='acf-typography-field-label' for='" . $field['key'] . "'>Line Height</label>";
+						echo '<input class="acf-typography-field-line-height" type="number"  min="1"  name="' . $field['name'] . '[line_height]" type="text" id="' . $field['key'] . 'line" class=""  value="' . $field_value['line_height'] . '" >' ;
 					echo "</div>";
 				}
-
-
-			if ($field['show_font_style']){
-				echo "<div class='acf-typography-subfield acf-typography-font-style'>";
-					echo '<div class="select2-container"> Font Style </div>';
-					if ($field['show_font_style']) {
-						echo '<select name="' . $field['name'] . '[font_style]" class="'. $field['key'] .'js-select2">';
-							foreach ( $font_style as $k => $v) {
-								echo '<option value="' . $k . '"' . selected($field_value['font_style'], $k, false) . ' >' . $v . '</option>' ;
-							}
-						echo '</select>';
-					}
-				echo "</div>";
-			}
 
 		echo "</div>";
 
 
 
 		if ($field['show_preview_text'] & $field['show_font_familys']) {
-			echo '  <div calass = "acf-typography-preview">
-	    	   			<label>Preview Text:</label>
-        					<div id="' . $field['key'] . 'preview_font">Reyhoun is Awesome :) <br /> 1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
+			echo '  <div class = "acf-typography-preview">
+	    	   			<label class="acf-typography-field-label">Preview Text:</label>
+        				<div class="acf-typography-preview-font" id="' . $field['key'] . 'preview_font">Reyhoun is Awesome :) <br /> 1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
   					</div> ';
   		}
 
