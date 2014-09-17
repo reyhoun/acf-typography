@@ -432,6 +432,7 @@ class acf_field_typography extends acf_field {
 				border: solid 1px #ddd;
 				border-radius: 3px;
 				background: #f9f9f9;
+				line-height: 150%;
 			}
 			.acf-typography-subfield {
 				float: left;
