@@ -35,6 +35,9 @@ This ACF field type is compatible with:
 
 ### Changelog
 
+## 0.3.1
+* Some bug fixes
+
 ## 0.3.0
 *Add: Color Picker
 

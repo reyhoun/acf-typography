@@ -102,7 +102,7 @@ class acf_field_typography extends acf_field {
 			'font_size'			=> 20,
 			'line_height'		=> 25,
 			'font_style'		=> 'normal',
-			'text_color'  => 'ffffff',
+			'text_color'  		=> '#ffffff',
 			'default_value'		=> '',//pak
 			'new_lines'			=> '',
 			'maxlength'			=> '',
@@ -561,7 +561,7 @@ class acf_field_typography extends acf_field {
 
 		echo '</div>';
 
-
+ 
 
 		if ($field['show_preview_text'] & $field['show_font_familys']) {
 			echo '  <div class = "acf-typography-preview">
