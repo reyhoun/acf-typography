@@ -581,7 +581,7 @@ class acf_field_typography extends acf_field {
 
 
 			$(".'. $field['key'] .'js-select2").select2();
-			// $("#' .  $field['id'] . '-color").wpColorPicker("color");
+			$("#' .  $field['id'] . '-color").wpColorPicker("color");
 			$("body").mouseup(function(){$("#'. $field['key'] . 'preview_font").css("color", $("#' .  $field['id'] . '-color").val())});
 
 		
@@ -846,9 +846,9 @@ class acf_field_typography extends acf_field {
 		
 		$dir = plugin_dir_url( __FILE__ );
 
-		// // register & include JS
-		wp_register_script( 'acf-input-typography', "{$dir}js/input.js" );
-		wp_enqueue_script('acf-input-typography');
+		// // // register & include JS
+		// wp_register_script( 'acf-input-typography', "{$dir}js/input.js" );
+		// wp_enqueue_script('acf-input-typography');
 		
 		
 		// register & include CSS  
