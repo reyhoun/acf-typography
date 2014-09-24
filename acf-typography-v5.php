@@ -93,6 +93,7 @@ class acf_field_typography extends acf_field {
 			'show_line_height'		=> 1,
 			'show_font_style'		=> 1,
 			'show_preview_text'		=> 1,
+			'show_color_picker'		=> 1,
 			'font-family'		=> '',
 			'font-weight'		=> '400',
             'backup-font'		=> 'Arial, Helvetica, sans-serif',
@@ -101,6 +102,7 @@ class acf_field_typography extends acf_field {
 			'font_size'			=> 20,
 			'line_height'		=> 25,
 			'font_style'		=> 'normal',
+			'text_color'  => 'ffffff',
 			'default_value'		=> '',//pak
 			'new_lines'			=> '',
 			'maxlength'			=> '',
@@ -318,6 +320,26 @@ class acf_field_typography extends acf_field {
 		));
 
 
+			acf_render_field_setting( $field, array(
+			'label'			=> __('Show Color Picker ?','acf-typography'), 
+			'type'			=> 'radio',
+			'layout'  		=>  'horizontal',
+			'name'			=> 'show_color_picker',
+			'choices'		=>	array(
+									1	=>	__('Yes','acf-font-awesome'),
+									0	=>	__('No','acf-font-awesome')
+								)
+		));
+
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Font Color','acf-typography'),
+			'type'			=> 'text',
+			'name'			=> 'text_color',
+			'append'		=> 'rbg',
+		));
+
+
+
 
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Show Font Style ?','acf-typography'),
@@ -379,6 +401,7 @@ class acf_field_typography extends acf_field {
             $field['value']['backupfont']	 = 	$field['backup-font'];
             $field['value']['text_align']	 =	$field['text_align'];
             $field['value']['font_size']	 =	$field['font_size'];
+            $field['value']['text-color']	 =	$field['text_color'];
            
             if ($field['show_line_height']) {
             	$field['value']['line_height']	 =  $field['line_height'];
@@ -489,6 +512,22 @@ class acf_field_typography extends acf_field {
 					echo '</div>';
 				}
 
+
+				if ($field['show_color_picker']) {
+					echo '<div class="acf-background-subfield acf-background-color">';
+						echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Text Color</label>';
+						echo '
+							<div class="acf-typography-field-line-height">
+								<div class="acf-input-wrap">
+                            		<input data-id="'. $field['id'] . '" name="' .  $field['name'] . '[text-color]" id="' .  $field['id'] . '-color" class="rey-color" type="text" value="' . $field_value['text-color'] . '" data-default-color="#000" />
+								</div>
+							</div>
+						';
+					echo '</div>';
+				}
+
+
+
 				if ($field['show_font_size']) {
 					echo '<div class="acf-typography-subfield acf-typography-font-size">';
 						echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Font Size</label>';
@@ -518,6 +557,8 @@ class acf_field_typography extends acf_field {
 					echo '</div>';
 				}
 
+			
+
 		echo '</div>';
 
 
@@ -540,7 +581,8 @@ class acf_field_typography extends acf_field {
 
 
 			$(".'. $field['key'] .'js-select2").select2();
-
+			// $("#' .  $field['id'] . '-color").wpColorPicker("color");
+			$("body").mouseup(function(){$("#'. $field['key'] . 'preview_font").css("color", $("#' .  $field['id'] . '-color").val())});
 
 		
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -554,6 +596,8 @@ class acf_field_typography extends acf_field {
 			$("#'. $field['key'] . 'preview_font").css("line-height", $("#' . $field['key'] . 'line").val()+ "px");
 
 			$("#'. $field['key'] . 'preview_font").css("text-align", $("#' . $field['key'] . 'align").val());
+
+			$("#'. $field['key'] . 'preview_font").css("color", $("#' .  $field['id'] . '-color").val());
 
 
 
@@ -798,19 +842,20 @@ class acf_field_typography extends acf_field {
 
 
 
-	function input_admin_enqueue_scripts() {
+	function input_admin_head() {
 		
 		$dir = plugin_dir_url( __FILE__ );
 
 		// // register & include JS
-		// wp_register_script( 'acf-input-typography', "{$dir}js/input.js" );
-		// wp_enqueue_script('acf-input-typography');
+		wp_register_script( 'acf-input-typography', "{$dir}js/input.js" );
+		wp_enqueue_script('acf-input-typography');
 		
 		
 		// register & include CSS  
 		wp_register_style( 'acf-input-typography', "{$dir}css/input.css" ); 
 		wp_enqueue_style('acf-input-typography');
 		
+		 wp_enqueue_media();
 	}
 	
 }
