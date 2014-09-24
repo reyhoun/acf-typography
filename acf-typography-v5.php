@@ -513,21 +513,6 @@ class acf_field_typography extends acf_field {
 				}
 
 
-				if ($field['show_color_picker']) {
-					echo '<div class="acf-background-subfield acf-background-color">';
-						echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Text Color</label>';
-						echo '
-							<div class="acf-typography-field-line-height">
-								<div class="acf-input-wrap">
-                            		<input data-id="'. $field['id'] . '" name="' .  $field['name'] . '[text-color]" id="' .  $field['id'] . '-color" class="rey-color" type="text" value="' . $field_value['text-color'] . '" data-default-color="#000" />
-								</div>
-							</div>
-						';
-					echo '</div>';
-				}
-
-
-
 				if ($field['show_font_size']) {
 					echo '<div class="acf-typography-subfield acf-typography-font-size">';
 						echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Font Size</label>';
@@ -561,7 +546,18 @@ class acf_field_typography extends acf_field {
 
 		echo '</div>';
 
- 
+		if ($field['show_color_picker']) {
+			echo '<div class="acf-background-subfield-color acf-typography-color">';
+				echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Text Color</label>';
+				echo '
+					<div class="acf-typography-field-line-height">
+						<div class="acf-input-wrap">
+                    		<input data-id="'. $field['id'] . '" name="' .  $field['name'] . '[text-color]" id="' .  $field['id'] . '-color" class="rey-color" type="text" value="' . $field_value['text-color'] . '" data-default-color="#000" />
+						</div>
+					</div>
+				';
+			echo '</div>';
+		}
 
 		if ($field['show_preview_text'] & $field['show_font_familys']) {
 			echo '  <div class = "acf-typography-preview">

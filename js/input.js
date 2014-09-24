@@ -1,5 +1,5 @@
 (function($){
 	
-			$('.clearfix .rey-color').wpColorPicker();
+			$('.rey-color').wpColorPicker();
 		
 })(jQuery);
