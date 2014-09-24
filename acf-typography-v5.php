@@ -335,7 +335,7 @@ class acf_field_typography extends acf_field {
 			'label'			=> __('Font Color','acf-typography'),
 			'type'			=> 'text',
 			'name'			=> 'text_color',
-			'append'		=> 'rbg',
+			'append'		=> 'hex',
 		));
 
 
