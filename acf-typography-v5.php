@@ -9,7 +9,7 @@ class acf_field_typography extends acf_field {
 
 	function __construct() {
 
-		$YOUR_API_KEY = null ;
+		$YOUR_API_KEY = NULL ;
 		
 		$this->name = 'typography';
 		$this->label = __('Typography', 'acf-typography');
@@ -23,7 +23,7 @@ class acf_field_typography extends acf_field {
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 		// update json
-		function json_update() {
+		function json_update($API_KEY) {
 
 			$filename = '../wp-content/plugins/acf-typography/gf.json';
 
@@ -31,9 +31,9 @@ class acf_field_typography extends acf_field {
 			$now = date ("Ymd", time());
 			$time = $now - $lastdate;
 
-			if ($time == 3) {
+			if ($time > 2) {
 
-				$json = file_get_contents('https://www.googleapis.com/webfonts/v1/webfonts?key=' . $YOUR_API_KEY);
+				$json = file_get_contents('https://www.googleapis.com/webfonts/v1/webfonts?key=' . $API_KEY);
 
 				$files = "../wp-content/plugins/acf-typography/gf.json";  
 				$myfile = fopen($files, 'wb');
@@ -46,7 +46,7 @@ class acf_field_typography extends acf_field {
 
 		// if $YOUR_API_KEY exist;
 		if ($YOUR_API_KEY) {
-			json_update();
+			json_update($YOUR_API_KEY);
 		}
 
 
@@ -94,6 +94,7 @@ class acf_field_typography extends acf_field {
 			'show_font_style'		=> 1,
 			'show_preview_text'		=> 1,
 			'show_color_picker'		=> 1,
+			'show_letter_spacing'	=> 0,
 			'font-family'		=> '',
 			'font-weight'		=> '400',
             'backup-font'		=> 'Arial, Helvetica, sans-serif',
@@ -101,6 +102,7 @@ class acf_field_typography extends acf_field {
             'direction'			=> 'ltr',
 			'font_size'			=> 20,
 			'line_height'		=> 25,
+			'letter_spacing'	=> 0,
 			'font_style'		=> 'normal',
 			'text_color'  		=> '#ffffff',
 			'default_value'		=> '',//pak
@@ -319,6 +321,25 @@ class acf_field_typography extends acf_field {
 			'append'		=> 'px',
 		));
 
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Show Letter Spacing ?','acf-typography'), 
+			'instructions'	=> __('','acf-typography'),
+			'type'			=> 'radio',
+			'layout'  		=>  'horizontal',
+			'name'			=> 'show_letter_spacing',
+			'choices'		=>	array(
+									1	=>	__('Yes','acf-font-awesome'),
+									0	=>	__('No','acf-font-awesome')
+								)
+		));
+
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Letter Spacing','acf-typography'),
+			'type'			=> 'number',
+			'name'			=> 'letter_spacing',
+			'append'		=> 'px',
+		));
+
 
 			acf_render_field_setting( $field, array(
 			'label'			=> __('Show Color Picker ?','acf-typography'), 
@@ -360,6 +381,7 @@ class acf_field_typography extends acf_field {
 			'choices'		=>	array(
 			 		'normal'	=> 'normal',
 			 		'italic'	=> 'italic',
+			 		'oblique'	=> 'oblique',
 			 	)
 		));
 
@@ -402,6 +424,7 @@ class acf_field_typography extends acf_field {
             $field['value']['text_align']	 =	$field['text_align'];
             $field['value']['font_size']	 =	$field['font_size'];
             $field['value']['text-color']	 =	$field['text_color'];
+            $field['value']['letter_spacing']=  $field['letter_spacing'];
            
             if ($field['show_line_height']) {
             	$field['value']['line_height']	 =  $field['line_height'];
@@ -425,7 +448,8 @@ class acf_field_typography extends acf_field {
 
 		$font_style = array(
 			 		'normal'	=> 'normal',
-			 		'italic'	=> 'italic');
+			 		'italic'	=> 'italic',
+			 		'oblique'	=> 'oblique');
 		$s = 0;
 		$e = '';
 
@@ -504,7 +528,7 @@ class acf_field_typography extends acf_field {
 					echo '<div class="acf-typography-subfield acf-typography-font-style">';
 						echo '<label class="acf-typography-field-label" for="'. $field['key'] .'">Font Style</label>';
 
-						echo '<select name="' . $field['name'] . '[font_style]" class="'. $field['key'] .'js-select2">';
+						echo '<select name="' . $field['name'] . '[font_style]" id="' . $field['key'] . '-font-style"  class="'. $field['key'] .'js-select2">';
 							foreach ( $font_style as $k => $v) {
 								echo '<option value="' . $k . '"' . selected($field_value['font_style'], $k, false) . ' >' . $v . '</option>' ;
 							}
@@ -536,6 +560,20 @@ class acf_field_typography extends acf_field {
 								<div class="acf-input-append">px</div>
 								<div class="acf-input-wrap">
 									<input type="number" name="' . $field['name'] . '[line_height]" id="' . $field['key'] . 'line" value="' . $field_value['line_height'] . '" min="1" max="" step="any" placeholder="">
+								</div>
+							</div>
+						';
+					echo '</div>';
+				}
+
+				if ($field['show_letter_spacing']) {
+					echo '<div class="acf-typography-subfield acf-typography-font-line-height">';
+						echo '<label class="acf-typography-field-label" for="' . $field['key'] . '">Letter Spacing</label>';
+						echo '
+							<div class="acf-typography-field-line-height">
+								<div class="acf-input-append">px</div>
+								<div class="acf-input-wrap">
+									<input type="number" name="' . $field['name'] . '[letter_spacing]" id="' . $field['key'] . '-letter-spacing" value="' . $field_value['letter_spacing'] . '" min="" max="" step="any" placeholder="">
 								</div>
 							</div>
 						';
@@ -590,6 +628,10 @@ class acf_field_typography extends acf_field {
 			$("#'. $field['key'] . 'preview_font").css("font-size", $("#' . $field['key'] . 'size").val() + "px");
 
 			$("#'. $field['key'] . 'preview_font").css("line-height", $("#' . $field['key'] . 'line").val()+ "px");
+
+			$("#'. $field['key'] . 'preview_font").css("letter-spacing", $("#' . $field['key'] . '-letter-spacing").val()+ "px");
+
+			$("#'. $field['key'] . 'preview_font").css("font-style", $("#' . $field['key'] . '-font-style").val());
 
 			$("#'. $field['key'] . 'preview_font").css("text-align", $("#' . $field['key'] . 'align").val());
 
@@ -791,6 +833,28 @@ class acf_field_typography extends acf_field {
 
 
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//================ Letter Spacing change ==================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			$("#' . $field['key'] . '-letter-spacing").on("input",function(){
+
+				$("#'. $field['key'] . 'preview_font").css("letter-spacing", $(this).val()+ "px");
+
+			});
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		//================== Font Style change ====================
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+			$("#' . $field['key'] . '-font-style").on("change",function(){
+
+				$("#'. $field['key'] . 'preview_font").css("font-style", $(this).val());
+
+			});
+
+
+		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 		//================= Font align change =====================
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -799,7 +863,6 @@ class acf_field_typography extends acf_field {
 				$("#'. $field['key'] . 'preview_font").css("text-align", $(this).val());
 
 			});
-
 
 
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
