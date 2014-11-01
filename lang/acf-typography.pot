@@ -1,0 +1,137 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Advanced Custom Fields: Typography\n"
+"POT-Creation-Date: 2014-11-01 17:23+0330\n"
+"PO-Revision-Date: 2014-11-01 17:24+0330\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: acf-typography-v5.php:15
+msgid "Typography"
+msgstr ""
+
+#: acf-typography-v5.php:153
+msgid "Error! Please enter a higher value"
+msgstr ""
+
+#: acf-typography-v5.php:175
+msgid "Show Font Family ?"
+msgstr ""
+
+#: acf-typography-v5.php:176
+msgid "When Font Family dont load, Font Weight & Preview Text also dont show "
+msgstr ""
+
+#: acf-typography-v5.php:181 acf-typography-v5.php:203
+#: acf-typography-v5.php:224 acf-typography-v5.php:244
+#: acf-typography-v5.php:270 acf-typography-v5.php:290
+#: acf-typography-v5.php:312 acf-typography-v5.php:331
+#: acf-typography-v5.php:350 acf-typography-v5.php:371
+#: acf-typography-v5.php:397
+msgid "Yes"
+msgstr ""
+
+#: acf-typography-v5.php:182 acf-typography-v5.php:204
+#: acf-typography-v5.php:225 acf-typography-v5.php:245
+#: acf-typography-v5.php:271 acf-typography-v5.php:291
+#: acf-typography-v5.php:313 acf-typography-v5.php:332
+#: acf-typography-v5.php:351 acf-typography-v5.php:372
+#: acf-typography-v5.php:398
+msgid "No"
+msgstr ""
+
+#: acf-typography-v5.php:187
+msgid "Font Family"
+msgstr ""
+
+#: acf-typography-v5.php:198
+msgid "Show Font Weight ?"
+msgstr ""
+
+#: acf-typography-v5.php:209
+msgid "Font Weight"
+msgstr ""
+
+#: acf-typography-v5.php:219
+msgid "Show Backup Font ?"
+msgstr ""
+
+#: acf-typography-v5.php:231
+msgid "Backup Font"
+msgstr ""
+
+#: acf-typography-v5.php:239
+msgid "Show Text Align ?"
+msgstr ""
+
+#: acf-typography-v5.php:250
+msgid "Text Align"
+msgstr ""
+
+#: acf-typography-v5.php:265
+msgid "Show Text direction ?"
+msgstr ""
+
+#: acf-typography-v5.php:276
+msgid "Text direction"
+msgstr ""
+
+#: acf-typography-v5.php:285
+msgid "Show Font Size ?"
+msgstr ""
+
+#: acf-typography-v5.php:297
+msgid "Font Size"
+msgstr ""
+
+#: acf-typography-v5.php:306
+msgid "Show Line Height ?"
+msgstr ""
+
+#: acf-typography-v5.php:307
+msgid "When line height don t load line height is 150%"
+msgstr ""
+
+#: acf-typography-v5.php:318
+msgid "Line Height"
+msgstr ""
+
+#: acf-typography-v5.php:325
+msgid "Show Letter Spacing ?"
+msgstr ""
+
+#: acf-typography-v5.php:337
+msgid "Letter Spacing"
+msgstr ""
+
+#: acf-typography-v5.php:345
+msgid "Show Color Picker ?"
+msgstr ""
+
+#: acf-typography-v5.php:356
+msgid "Font Color"
+msgstr ""
+
+#: acf-typography-v5.php:366
+msgid "Show Font Style ?"
+msgstr ""
+
+#: acf-typography-v5.php:377
+msgid "Font Style"
+msgstr ""
+
+#: acf-typography-v5.php:392
+msgid "Show Preview Text ?"
+msgstr ""
