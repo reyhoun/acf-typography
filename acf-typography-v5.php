@@ -9,7 +9,6 @@ class acf_field_typography extends acf_field {
 
 	function __construct() {
 
-		$YOUR_API_KEY = NULL ;
 		
 		$this->name = 'typography';
 		$this->label = __('Typography', 'acf-typography');
@@ -45,8 +44,8 @@ class acf_field_typography extends acf_field {
 
 
 		// if $YOUR_API_KEY exist;
-		if ($YOUR_API_KEY) {
-			json_update($YOUR_API_KEY);
+		if (defined('YOUR_API_KEY')) {
+			json_update(YOUR_API_KEY);
 		}
 
 
@@ -104,7 +103,7 @@ class acf_field_typography extends acf_field {
 			'line_height'		=> 25,
 			'letter_spacing'	=> 0,
 			'font_style'		=> 'normal',
-			'text_color'  		=> '#ffffff',
+			'text_color'  		=> '#000000',
 			'default_value'		=> '',//pak
 			'new_lines'			=> '',
 			'maxlength'			=> '',
@@ -461,7 +460,6 @@ class acf_field_typography extends acf_field {
 	//========================== show render field ==============================
 	//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-		// echo $field['key'];
 
 		echo "<div class='clearfix'>";
 
@@ -915,6 +913,82 @@ class acf_field_typography extends acf_field {
 		wp_enqueue_style('acf-input-typography');
 		
 		 wp_enqueue_media();
+	}
+	
+	
+	//=========================================================================================
+	//=====   This filter is used to perform validation on the value prior to saving.    ======
+	//=====     All values are validated regardless of the field's required setting.     ======
+	//=====              This allows you to validate and return messages                 ======
+	//=====                  to the user if the value is not correct                     ======
+	//=========================================================================================
+	
+	function validate_value( $valid, $value, $field, $input ){
+
+	    if ($field['required']) {
+	    
+		    if (empty($value['font-family']) || empty($value['font-weight']) || empty($value['backupfont']) || empty($value['text_align'])
+		    	 || empty($value['direction']) || empty($value['font_style']) || empty($value['font_size']) || empty($value['line_height'])
+		    	 || empty($value['letter_spacing']) || empty($value['text-color'])) {
+		    	$set = 0;
+		    	$txt = __('The value is empty!! : ','acf-typography');
+		    
+		    	if( empty($value['font-family']) & $field['show_font_familys']){
+		    		$txt .= __('font family, ','acf-typography');
+		    		$set = 1;
+		    	}
+		    
+		    	if( empty($value['font-weight']) & $field['show_font_weight']){
+		    		$txt .= __('font weight, ','acf-typography');
+		    		$set = 1;
+		    	}
+		   
+	 	   		if( empty($value['backupfont']) & $field['show_backup_font']){
+		    		$txt .= __('backupfont, ','acf-typography');
+		    		$set = 1;
+		    	}
+		    
+		    	if( empty($value['text_align']) & $field['show_text_align']){
+		    		$txt .= __('text align, ','acf-typography');
+		    		$set = 1;
+		    	}
+		    
+		    	if( empty($value['direction']) & $field['show_text_direction']){
+		    		$txt .= __('direction, ','acf-typography');
+		    		$set = 1;
+		    	}
+		    
+		    	if( empty($value['font_style']) & $field['show_font_style']){
+		    		$txt .= __('font style, ','acf-typography');
+		    		$set = 1;
+		    	}
+		    
+		    	if( empty($value['font_size']) & $field['show_font_size']){
+		    		$txt .= __('font size, ','acf-typography');
+		    		$set = 1;
+		    	}
+		   
+		    	if( empty($value['line_height']) & $field['show_line_height']){
+		    		$txt .= __('line height, ','acf-typography');
+		    		$set = 1;
+		    	}
+		    
+		    	if( empty($value['letter_spacing']) & $field['show_letter_spacing']){
+		    		$txt .= __('letter spacing, ','acf-typography');
+		    		$set = 1;
+		    	}
+		    	if( empty($value['text-color']) & $field['show_color_picker']){
+		    		$txt .= __('text color, ','acf-typography');
+		    		$set = 1;
+		    	}
+		    	if ($set) {
+		    		$valid = $txt;
+		    	}
+		    	
+		    }
+		}
+
+	    return $valid;
 	}
 	
 }

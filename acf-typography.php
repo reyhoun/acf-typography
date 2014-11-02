@@ -3,7 +3,7 @@
  * Plugin Name: Advanced Custom Fields: Typography
  * Plugin URI: https://github.com/reyhoun/acf-typography
  * Description: Typography with Google Fonts Field for Advanced Custom Fields
- * Version: 0.4.0
+ * Version: 0.5.0
  * Author: Reyhoun
  * Author URI: http://reyhoun.com/
  * License: GPLv2 or later

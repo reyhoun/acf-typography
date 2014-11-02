@@ -20,6 +20,13 @@ This ACF field type is compatible with:
 
 -----------------------
 
+5. If you would like the list to be pulled from the Google API you will need to define your API key. 
+	You can do this in the 	theme's function file for example.
+
+	`define( 'YOUR_API_KEY', '**your_google_api_key**' );`
+
+ 	just head on over to the [Google API Console](http://cloud.google.com/console), create a new project and get a browser api key.
+
 ### Subfields
 * Google Font Family
 * Google Font Weight

@@ -25,6 +25,18 @@ This ACF field type is compatible with:
 
 == Changelog ==
 
+= 0.5.0 =
+* Compatible with [Github Updater](https://github.com/afragen/github-updater)
+* add language pot file
+* add changelog file
+* add required check
+
+= 0.4.0 =
+* Add letter spacing
+* bug fix: Font Style
+* bug fix: API KEY
+* Some bug fixes
+
 = 0.3.1 =
 * Some bug fixes
 
