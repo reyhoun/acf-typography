@@ -1,5 +1,8 @@
 # Changelog
 
+#### 0.6.0
+* Add required check
+
 #### 0.5.0
 * Compatible with [Github Updater](https://github.com/afragen/github-updater)
 * add language pot file
