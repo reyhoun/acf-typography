@@ -785,9 +785,15 @@ class acf_field_typography extends acf_field {
      			      initSelection : function (element, callback) {
 
 
-      			      var data = {id: data_array["items"][e.added["data"]]["variants"][0] , text: data_array["items"][e.added["data"]]["variants"][0]};
-      			      $("#' . $field['key'] . '").val(data_array["items"][e.added["data"]]["variants"][0]); 
+      			      if (data_array["items"][e.added["data"]]["variants"][0] == "regular")
+      			      	var data = {id: "400" , text: "400"};
+					  else
+					  	var data = {id: data_array["items"][e.added["data"]]["variants"][0] , text: data_array["items"][e.added["data"]]["variants"][0]};
+		
+      			      $("#' . $field['key'] . '").val(data_array["items"][e.added["data"]]["variants"][0]);
+
       			      callback(data);
+      			      
       			      // preview($("#' . $field['key'] . 'attribute").val());
 		
       				  }
