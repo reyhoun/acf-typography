@@ -733,7 +733,7 @@ class acf_field_typography extends acf_field {
 	    
 		    if (empty($value['font-family']) || empty($value['font-weight']) || empty($value['backupfont']) || empty($value['text_align'])
 		    	 || empty($value['direction']) || empty($value['font_style']) || empty($value['font_size']) || empty($value['line_height'])
-		    	 || empty($value['letter_spacing']) || empty($value['text-color'])) {
+		    	 || empty($value['text-color'])) {
 		    	$set = 0;
 		    	$txt = __('The value is empty!! : ','acf-typography');
 		    
@@ -776,15 +776,12 @@ class acf_field_typography extends acf_field {
 		    		$txt .= __('line height, ','acf-typography');
 		    		$set = 1;
 		    	}
-		    
-		    	if( empty($value['letter_spacing']) & $field['show_letter_spacing']){
-		    		$txt .= __('letter spacing, ','acf-typography');
-		    		$set = 1;
-		    	}
+
 		    	if( empty($value['text-color']) & $field['show_color_picker']){
 		    		$txt .= __('text color, ','acf-typography');
 		    		$set = 1;
 		    	}
+		    	
 		    	if ($set) {
 		    		$valid = $txt;
 		    	}
