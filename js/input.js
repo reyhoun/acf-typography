@@ -114,7 +114,7 @@
 
                 $(this).on("change", function(e) {
 
-                	console.log(data_array["items"][e.added["data"]]["variants"]);
+                	// console.log(data_array["items"][e.added["data"]]["variants"]);
 
    					preview(data_array["items"][e.added["data"]]["family"],"400",$(this));
    			
