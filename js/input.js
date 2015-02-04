@@ -114,7 +114,9 @@
 
                 $(this).on("change", function(e) {
 
-   					preview(data_array["items"][e.added["data"]]["family"],data_array["items"][e.added["data"]]["variants"][0],$(this));
+                	console.log(data_array["items"][e.added["data"]]["variants"]);
+
+   					preview(data_array["items"][e.added["data"]]["family"],"400",$(this));
    			
    					font_family_index = e.added["data"];
 
@@ -141,13 +143,17 @@
 
      			        initSelection : function (element, callback) {
 
-
-      			        if (data_array["items"][e.added["data"]]["variants"][0] == "regular")
-      			        	var data = {id: "400" , text: "400"};
-					    else
-					    	var data = {id: data_array["items"][e.added["data"]]["variants"][0] , text: data_array["items"][e.added["data"]]["variants"][0]};
+     			        //-----------------------------------------------------------------------
+      			        // if (data_array["items"][e.added["data"]]["variants"][0] == "regular")
+      			        //	var data = {id: "400" , text: "400"};
+					    // else
+					    // 	var data = {id: data_array["items"][e.added["data"]]["variants"][0] , text: data_array["items"][e.added["data"]]["variants"][0]};
 		
-      			        $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight").val(data_array["items"][e.added["data"]]["variants"][0]);
+      			        // $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight").val(data_array["items"][e.added["data"]]["variants"][0]);
+      			        //-----------------------------------------------------------------------
+
+      			        var data = {id: "400" , text: "400"};
+      			        $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight").val("400");
 
       			        callback(data);
       			      		
