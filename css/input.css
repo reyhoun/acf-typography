@@ -3,11 +3,13 @@
 }
 .acf-typography-preview-font {
 	text-align: center;
+	width: 93%;
+	/*display:block;*/
 	padding: 20px;
 	border: solid 1px #ddd;
 	border-radius: 3px;
 	background: #f9f9f9;
-	line-height: 150%;
+	line-height: 10%;
 }
 .acf-typography-subfield {
 	float: left;

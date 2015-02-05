@@ -1,18 +1,13 @@
 (function($){
 	
 			$(".rey-color").wpColorPicker();
-			$(".js-select2").select2();
-			// alert("jhdsgfhsydfb");
-			
+			$(".js-select2").select2();			
 
 
-			$("body").mouseup(function(){
-				$(".preview_font").each(function(){
-   // 			      	console.log($(this).closest(":has(.rey-main.acf-typography-color .acf-typography-field-line-height .acf-input-wrap .text-color)").find(".text-color").val());
-   // 			      	console.log($(this).closest(":has(.rey-main.acf-typography-color .acf-typography-field-line-height .acf-input-wrap .text-color)").find(".text-color"));
-   // 			      	$(this).css("color", $(this).closest(":has(.rey-main .acf-typography-color .acf-typography-field-line-height .acf-input-wrap .text-color)").find(".text-color").val())
-				})
-			});
+			// $("body").mouseup(function(){
+			// 	$(".preview_font").each(function(){
+  	// 			})
+			// });
 
 
 		//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -182,6 +177,11 @@
 			$(".sizeF").each(function(){
                 $(this).on("input",function(){
                 	$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").css("font-size", $(this).val() + "px");
+
+                	var name = $(this).closest(":has(.clearfix .acf-typography-font-familys .font-familys)").find(".font-familys.select2-offscreen").val();
+					var stl = $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight.select2-offscreen").val()
+					var css = $(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").attr('style');
+					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find("iframe").attr( "src", "http://localhost/wordpress/wp-content/plugins/acf-typography/preview.php?css="+css+"&font="+name+"&wi="+stl);
 				})
 			});
 
@@ -193,6 +193,11 @@
 			$(".lineF").each(function(){
                 $(this).on("input",function(){
 					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").css("line-height", $(this).val()+ "px");
+
+					var name = $(this).closest(":has(.clearfix .acf-typography-font-familys .font-familys)").find(".font-familys.select2-offscreen").val();
+					var stl = $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight.select2-offscreen").val()
+					var css = $(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").attr('style');
+					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find("iframe").attr( "src", "http://localhost/wordpress/wp-content/plugins/acf-typography/preview.php?css="+css+"&font="+name+"&wi="+stl);
 				})
 			});
 
@@ -204,7 +209,12 @@
 			$(".letter-spacing").each(function(){
                 $(this).on("input",function(){
 
-					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").css("letter-spacing", $(this).val()+ "px");
+					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".ss").css("letter-spacing", $(this).val()+ "px");
+
+					var name = $(this).closest(":has(.clearfix .acf-typography-font-familys .font-familys)").find(".font-familys.select2-offscreen").val();
+					var stl = $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight.select2-offscreen").val()
+					var css = $(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").attr('style');
+					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find("iframe").attr( "src", "http://localhost/wordpress/wp-content/plugins/acf-typography/preview.php?css="+css+"&font="+name+"&wi="+stl);
 				})
 			});
 
@@ -217,6 +227,11 @@
                 $(this).on("change",function(){
 
 					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").css("font-style", $(this).val());
+
+					var name = $(this).closest(":has(.clearfix .acf-typography-font-familys .font-familys)").find(".font-familys.select2-offscreen").val();
+					var stl = $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight.select2-offscreen").val()
+					var css = $(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").attr('style');
+					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find("iframe").attr( "src", "http://localhost/wordpress/wp-content/plugins/acf-typography/preview.php?css="+css+"&font="+name+"&wi="+stl);
 				})
 			});
 
@@ -229,6 +244,11 @@
                 $(this).on("change",function(){
 
 					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").css("text-align", $(this).val());
+
+					var name = $(this).closest(":has(.clearfix .acf-typography-font-familys .font-familys)").find(".font-familys.select2-offscreen").val();
+					var stl = $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight.select2-offscreen").val()
+					var css = $(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").attr('style');
+					$(this).closest(":has(.rey_main .acf-typography-preview .preview_font)").find("iframe").attr( "src", "http://localhost/wordpress/wp-content/plugins/acf-typography/preview.php?css="+css+"&font="+name+"&wi="+stl);
 				})
 			});
 
@@ -240,9 +260,14 @@
        		 function preview(name , stl, thisF) {
        		 	if (thisF.closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").length) {
         	
-        			var css = 	"@import url(http://fonts.googleapis.com/css?family=" + name.split(" ").join("+") + ":" + stl + ");";
-        			thisF.closest(":has(.rey_main .preview_style)").find(".preview_style").html(css);
+        			// var css = 	"@import url(http://fonts.googleapis.com/css?family=" + name.split(" ").join("+") + ":" + stl + ");";
+        			// thisF.closest(":has(.rey_main .preview_style)").find(".preview_style").html(css);
         			thisF.closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").css("font-family", name);
+        			
+        			var css = thisF.closest(":has(.rey_main .acf-typography-preview .preview_font)").find(".preview_font").attr('style');
+					thisF.closest(":has(.rey_main .acf-typography-preview .preview_font)").find("iframe").attr( "src", "http://localhost/wordpress/wp-content/plugins/acf-typography/preview.php?css="+css+"&font="+name+"&wi="+stl);
+
+
         		}
 
         	}

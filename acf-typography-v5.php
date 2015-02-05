@@ -621,10 +621,15 @@ class acf_field_typography extends acf_field {
 		if ($field['show_preview_text'] & $field['show_font_familys']) {
 			echo '  <div class = "acf-typography-preview">
 	    	   			<label class="acf-typography-field-label">Preview Text:</label>
-        				<div class="acf-typography-preview-font preview_font" style="' . $css . '" id="' . $field['key'] . 'preview_font">Reyhoun is Awesome :) <br /> 1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k l m n o p q r s t u v w x y z</div>
-  					</div> ';
+        				<div class="preview_font ss" style="' . $css . '"></div>';
+
+  						$di = plugin_dir_url( __FILE__ );
+  						echo "<iframe class = 'acf-typography-preview-font' src='{$di}preview.php?css=" . $css . "&font=".$field['value']['font-family']."&wi=".$field['value']['font-weight']."'>";
+  						echo "</iframe>";
+  			echo '  </div>';
   		}
-  		echo '</div>';
+
+  	echo '</div>';
 
 
 	}
