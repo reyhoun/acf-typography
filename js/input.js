@@ -21,13 +21,13 @@
 	    $(this).select2( {
 		   query: function (query) {
 		       var data = {results: []}, i;
-			  		 for (i in  data_array["items"]) {
-			  		 	var Big1 = data_array["items"][i]["family"].toLowerCase();
+			  		 for (i in  data_array.items) {
+			  		 	var Big1 = data_array.items[i].family.toLowerCase();
 			  		 	var Big2 = query.term.toLowerCase();
 
 			  		 	if(Big1.indexOf(Big2) > -1){
 
-		          			 data.results.push({id: data_array["items"][i]["family"], text: data_array["items"][i]["family"], data: i});
+		          			 data.results.push({id: data_array.items[i].family, text: data_array.items[i].family, data: i});
 		          		}
 		       		}
 		       query.callback(data);
@@ -49,16 +49,16 @@
 		name_font = $(this).closest(":has(.clearfix .acf-typography-font-familys .font-familys)").find(".font-familys.select2-offscreen").val();
 		var list = [];
 
-		for (i in  data_array["items"]) {
-			if (data_array["items"][i]["family"] == name_font) {
-				for (e in  data_array["items"][i]["variants"]) {
-				    if (data_array["items"][i]["variants"][e] == "regular") {
+		for (i in  data_array.items) {
+			if (data_array.items[i].family == name_font) {
+				for (e in  data_array.items[i].variants) {
+				    if (data_array.items[i].variants[e] == "regular") {
 			       		list.push({id: "400" , text: "400"});
 				    } else {
-				       	list.push({id: data_array["items"][i]["variants"][e] , text: data_array["items"][i]["variants"][e]});
-				    };
+				       	list.push({id: data_array.items[i].variants[e] , text: data_array.items[i].variants[e]});
+				    }
 				}
-			};
+			}
 		}
 
 		$(this).select2({
@@ -74,17 +74,17 @@
 	 */
 	$(".font-familys.select2-offscreen").each(function(){
 	    $(this).on("change", function(e) {
-			preview(data_array["items"][e.added["data"]]["family"],"400",$(this));		
-			font_family_index = e.added["data"];
+			preview(data_array.items[e.added.data].family,"400",$(this));		
+			font_family_index = e.added.data;
 
 		    $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight").select2({
 		        query: function (query) {
 		            var data = {results: []}, i;
-	          		for (i in  data_array["items"][e.added["data"]]["variants"]) {
-	          		    if (data_array["items"][e.added["data"]]["variants"][i] == "regular") {
+	          		for (i in  data_array.items[e.added.data].variants) {
+	          		    if (data_array.items[e.added.data].variants[i] == "regular") {
        						data.results.push({id: "400" , text: "400"});
        					} else{
-       						data.results.push({id: data_array["items"][e.added["data"]]["variants"][i] , text: data_array["items"][e.added["data"]]["variants"][i]});
+       						data.results.push({id: data_array.items[e.added.data].variants[i] , text: data_array.items[e.added.data].variants[i]});
        					}
 	          		}
 
@@ -93,11 +93,11 @@
 
 		        initSelection : function (element, callback) {
 			        //-----------------------------------------------------------------------
-			        // if (data_array["items"][e.added["data"]]["variants"][0] == "regular")
+			        // if (data_array.items[e.added.data].variants[0] == "regular")
 			        //	var data = {id: "400" , text: "400"};
 				    // else
-				    // 	var data = {id: data_array["items"][e.added["data"]]["variants"][0] , text: data_array["items"][e.added["data"]]["variants"][0]};
-			        // $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight").val(data_array["items"][e.added["data"]]["variants"][0]);
+				    // 	var data = {id: data_array.items[e.added.data].variants[0] , text: data_array.items[e.added.data].variants[0]};
+			        // $(this).closest(":has(.clearfix .acf-typography-font-weight .font-weight)").find(".font-weight").val(data_array.items[e.added.data].variants[0]);
 			        //-----------------------------------------------------------------------
 
 			        var data = {id: "400" , text: "400"};
@@ -114,7 +114,7 @@
 	*/
 	$(".font-weight").each(function(){
 		$(this).on("change",function(e){
-			preview($(this).closest(":has(.clearfix .acf-typography-font-familys .font-familys)").find(".font-familys.select2-offscreen").val(),e.added["id"],$(this));
+			preview($(this).closest(":has(.clearfix .acf-typography-font-familys .font-familys)").find(".font-familys.select2-offscreen").val(),e.added.id,$(this));
 		});
 	});
 
