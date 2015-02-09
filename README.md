@@ -2,7 +2,7 @@
 
 Typography with Google Fonts Field for Advanced Custom Fields
 
-![ACF Typography Field](https://raw.githubusercontent.com/reyhoun/acf-typography/screenshot.png "ACF Typography sample field")
+![ACF Typography Field](https://raw.githubusercontent.com/reyhoun/acf-typography/master/screenshot.png "ACF Typography sample field")
 
 ## Subfields
 * Google Font Family
