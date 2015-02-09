@@ -1,5 +1,16 @@
 # Changelog
 
+#### 0.6.4
+* Improve markup of preview iframe
+
+#### 0.6.3
+* Bug fix: load font-family(move preview to an iframe)
+* Clean Codes & 50 jshint.com warning fixed
+
+#### 0.6.2
+* Bug fix: default font-weight return 'regular'
+* Remove letter-spacing from required check
+
 #### 0.6.0
 * Add required check
 
