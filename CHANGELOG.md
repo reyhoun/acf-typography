@@ -1,5 +1,9 @@
 # Changelog
 
+#### 0.6.5
+* Bug fix: acf_force_type_array error
+* Added text-transform
+
 #### 0.6.4
 * Improve markup of preview iframe
 
@@ -33,7 +37,7 @@
 *Add: Color Picker
 
 #### 0.2.0
-* Add: Style for display fields 
+* Add: Style for display fields
 
 #### 0.1.2
 * bug fix : When Load more than one typography field in a page
